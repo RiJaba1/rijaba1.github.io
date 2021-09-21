@@ -1,0 +1,18 @@
+---
+layout: single
+(titulo) title: Creando una antena casera direccional de largo alcance
+(descripcion que aparece en pagina inicial) excerpt: "¿Te gustaría aprender a crear una antena casera de largo alcance para hackearlos a todos?, toma asiento que te lo explico."
+(fecha) date: 2020-11-29
+classes: wide
+(imagen pantalla principal) header:
+  teaser: /assets/images/antenacasera/antena.jpg
+  teaser_home_page: true
+categories:
+  - WiFi
+  - Utilidades
+  - Casero
+tags:
+  - Pentesting
+  - OSWP
+  - Antena Casera
+---
