@@ -60,13 +60,13 @@ Dentro de la carpeta crearemos un archivo index.html como el siguiente
 
 Este pequeño archivos nos servirá para poder hacer una petición al servidor.
 
-El siguiente paso es ejecutar ```go heroku logs -t -a NOMBRE-PROYECTO```
+El siguiente paso es ejecutar `heroku logs -t -a NOMBRE-PROYECTO`
 
 <p align="center">
 <img src="/assets/images/whatsapp-canal-encubierto/Img1.jpg">
 </p>
 
-Llegados a este punto solo necesitamos *escrbir* un mensaje con `http://NOMBRE-PROYECTO.herokuapp.com/MENSAJE-AQUÍ`
+Llegados a este punto solo necesitamos **escribir** un **mensaje** con `http://NOMBRE-PROYECTO.herokuapp.com/MENSAJE-AQUÍ`
 
 <p align="center">
 <img src="/assets/images/whatsapp-canal-encubierto/Img3.jpg">
@@ -78,5 +78,5 @@ Llegados a este punto solo necesitamos *escrbir* un mensaje con `http://NOMBRE-P
 
 
 ## ¿Por qué sucede esto?
-Siempre que ingreses una URL a WhatsApp, se cargará la web en segundo plano para poder ofrecernos la previsualización del sitio. Al poner el comando de Heroku lo que conseguimos es que nos muestre todas las peticiones, incluyendo las de WhatsApp.
+Siempre que ingreses una URL a WhatsApp, se cargará la web en segundo plano para poder ofrecernos la previsualización del sitio. Al poner el comando de Heroku lo que conseguimos es que nos muestre todas las peticiones GET al servidor, incluyendo las de WhatsApp.
 
