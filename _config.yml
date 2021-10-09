@@ -19,7 +19,7 @@ locale                   : "en-US"
 title                    : "RiJaba1's Page"
 title_separator          : "-"
 name                     : "RiJaba1"
-description              : "Mi descripión aquí"
+description              : "Soy un aficionado a la tecnología en general, especialmente a la ciberseguridad."
 url                      : "https://rijaba1.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "rijaba1/rijaba1.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -103,7 +103,7 @@ analytics:
 author:
   name             : "RiJaba1"
   avatar           : "/avatar.png"
-  bio              : "Soy un aficionado a la tecnología en general, especialmente en la ciberseguridad."
+  bio              : "Soy un aficionado a la tecnología en general, especialmente a la ciberseguridad."
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Canal encubierto WhatsApp
-excerpt: En este post aprenderemos a crear un canal encubiero en Whastsapp, usando Heroku.
+excerpt: En este post aprenderemos a crear un canal encubierto en Whastsapp, usando Heroku.
 date: 2021-10-08
 classes: wide
 tags:

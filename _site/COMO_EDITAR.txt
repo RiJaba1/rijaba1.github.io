@@ -1,3 +1,0 @@
-Entrar en _site y editar el archivo index.html.
-
-En assents/images puedes editar las imagenes
