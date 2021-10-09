@@ -7,8 +7,6 @@ main:
     url: /categories/
   - title: "Etiquetas"
     url: /tags/
-  - title: "Vídeos"
-    url: /videos/
   - title: "Buscador"
     url: /buscador/
   - title: "Contacto"
