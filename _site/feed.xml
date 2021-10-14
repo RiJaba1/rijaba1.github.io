@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-09T11:09:32+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Soy un aficionado a la tecnología en general, especialmente a la ciberseguridad.</subtitle><author><name>RiJaba1</name></author><entry><title type="html">Canal encubierto WhatsApp</title><link href="http://localhost:4000/canal-encubierto-whatsapp/" rel="alternate" type="text/html" title="Canal encubierto WhatsApp" /><published>2021-10-08T00:00:00+02:00</published><updated>2021-10-08T00:00:00+02:00</updated><id>http://localhost:4000/canal-encubierto-whatsapp</id><content type="html" xml:base="http://localhost:4000/canal-encubierto-whatsapp/">&lt;p&gt;En el siguiente artículo os mostraré la manera de mantener una conversaciñón privado entre dos personas sin que quede ningún tipo de registro en WhatsApp.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-14T18:43:35+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Soy un aficionado a la tecnología en general, especialmente a la ciberseguridad.</subtitle><author><name>RiJaba1</name></author><entry><title type="html">Canal encubierto WhatsApp</title><link href="http://localhost:4000/canal-encubierto-whatsapp/" rel="alternate" type="text/html" title="Canal encubierto WhatsApp" /><published>2021-10-08T00:00:00+02:00</published><updated>2021-10-08T00:00:00+02:00</updated><id>http://localhost:4000/canal-encubierto-whatsapp</id><content type="html" xml:base="http://localhost:4000/canal-encubierto-whatsapp/">&lt;p&gt;En el siguiente artículo os mostraré la manera de mantener una conversaciñón privado entre dos personas sin que quede ningún tipo de registro en WhatsApp.&lt;/p&gt;
 
 &lt;h2 id=&quot;requerimientos&quot;&gt;Requerimientos&lt;/h2&gt;
 &lt;p&gt;Antes de iniciar tenemos que hacer las siguientes cosas:&lt;/p&gt;
@@ -44,13 +44,13 @@ Dentro de la carpeta crearemos un archivo index.html como el siguiente&lt;/p&gt;
 
 &lt;p&gt;Este pequeño archivos nos servirá para poder hacer una petición al servidor.&lt;/p&gt;
 
-&lt;p&gt;El siguiente paso es ejecutar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;go heroku logs -t -a NOMBRE-PROYECTO&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;El siguiente paso es ejecutar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heroku logs -t -a NOMBRE-PROYECTO&lt;/code&gt;&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/whatsapp-canal-encubierto/Img1.jpg&quot; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;Llegados a este punto solo necesitamos &lt;em&gt;escrbir&lt;/em&gt; un mensaje con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://NOMBRE-PROYECTO.herokuapp.com/MENSAJE-AQUÍ&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Llegados a este punto solo necesitamos &lt;strong&gt;escribir&lt;/strong&gt; un &lt;strong&gt;mensaje&lt;/strong&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://NOMBRE-PROYECTO.herokuapp.com/MENSAJE-AQUÍ&lt;/code&gt;&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/whatsapp-canal-encubierto/Img3.jpg&quot; /&gt;
@@ -61,4 +61,4 @@ Dentro de la carpeta crearemos un archivo index.html como el siguiente&lt;/p&gt;
 &lt;/p&gt;
 
 &lt;h2 id=&quot;por-qué-sucede-esto&quot;&gt;¿Por qué sucede esto?&lt;/h2&gt;
-&lt;p&gt;Siempre que ingreses una URL a WhatsApp, se cargará la web en segundo plano para poder ofrecernos la previsualización del sitio. Al poner el comando de Heroku lo que conseguimos es que nos muestre todas las peticiones, incluyendo las de WhatsApp.&lt;/p&gt;</content><author><name>RiJaba1</name></author><category term="WhatsApp" /><category term="Heroku" /><category term="Canal encubierto" /><summary type="html">En este post aprenderemos a crear un canal encubierto en Whastsapp, usando Heroku.</summary></entry><entry><title type="html">Mi prueba</title><link href="http://localhost:4000/prueba/" rel="alternate" type="text/html" title="Mi prueba" /><published>2021-09-20T00:00:00+02:00</published><updated>2021-09-20T00:00:00+02:00</updated><id>http://localhost:4000/prueba</id><content type="html" xml:base="http://localhost:4000/prueba/">&lt;p&gt;Hola&lt;/p&gt;</content><author><name>RiJaba1</name></author><category term="Hola" /><summary type="html">Esta es mi prueba</summary></entry></feed>
+&lt;p&gt;Siempre que ingreses una URL a WhatsApp, se cargará la web en segundo plano para poder ofrecernos la previsualización del sitio. Al poner el comando de Heroku lo que conseguimos es que nos muestre todas las peticiones GET al servidor, incluyendo las de WhatsApp.&lt;/p&gt;</content><author><name>RiJaba1</name></author><category term="Tutoriales" /><category term="WhatsApp" /><category term="WhatsApp" /><category term="Heroku" /><category term="Canal encubierto" /><summary type="html">En este post aprenderemos a crear un canal encubierto en WhatsApp, usando Heroku.</summary></entry></feed>
