@@ -11,3 +11,5 @@ main:
     url: /buscador/
   - title: "Contacto"
     url: /about/
+  - title: "Reflejos"
+    url: /reflejos/
