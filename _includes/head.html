@@ -39,3 +39,6 @@
     <script src="{{ script_path }}"></script>
   {% endfor %}
 {% endif %}
+{% if site.google_analytics and jekyll.environment == 'production' %}
+{% include analytics.html %}
+{% endif %}
