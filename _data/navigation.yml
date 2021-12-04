@@ -9,7 +9,7 @@ main:
     url: /tags/
   - title: "Buscador"
     url: /buscador/
-  - title: "Contacto"
+  - title: "Sobre mí"
     url: /about/
-  - title: "Reflejos"
-    url: /reflejos/
+  - title: "FILES"
+    url: /files/
