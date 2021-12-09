@@ -71,7 +71,7 @@ google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
-google_analytics: 
+google_analytics: UA-213646017-1
 google_verify : BHaiJMDDLAEy9jqi1sxGIzsOaRIVud__U3Gu75yYcvA
 bing_site_verification   :
 yandex_site_verification :
@@ -209,6 +209,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-seo-tag
 
 # mimic GitHub Pages with --safe
 whitelist:
