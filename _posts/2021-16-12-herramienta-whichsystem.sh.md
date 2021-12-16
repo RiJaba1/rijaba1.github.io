@@ -1,6 +1,7 @@
 ---
 layout: single
 title: Herramienta whichSystem.sh
+excerpt: Utilidad whichSystem.sh
 date: 2021-12-16
 classes: wide
 tags:
