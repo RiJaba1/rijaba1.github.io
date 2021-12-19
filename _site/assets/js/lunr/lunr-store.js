@@ -8,4 +8,9 @@ var store = [{
         "excerpt":"Utilidad Esta herramienta nos permita averiguar el SO (Sistema Operativo) de una equipo sin hacer ruido y de manera instantánea. Para ello esta herramienta hace uso del comando ping disponible en todas las versiones de Linux de manera predeterminada. Uso de la herramienta ┌─[root@rijaba1-pc]─[~] └──╼ #git clone https://github.com/rijaba1/whichSystem.sh Clonando en...","categories": ["Herramientas"],
         "tags": ["Herramienta","Hacking","RiJaba1"],
         "url": "http://localhost:4000/herramienta-whichsystem.sh/",
+        "teaser":null},{
+        "title": "Herramienta portDiscoverSH",
+        "excerpt":"Utilidad Esta herramienta está diseñada para poder hacer un escaneo rápido y poco ruidoso a una IP que nosotros le asignemos. El enlace a GitHub para descargar esta utilidad lo teneis más abajo. Instalación La instalación de esta herramienta es muy sencilla dado que usa herramientas que ya vienen instaladas...","categories": ["Herramientas"],
+        "tags": ["Herramienta","Hacking","RiJaba1"],
+        "url": "http://localhost:4000/herramienta-portDiscoverSH/",
         "teaser":null}]

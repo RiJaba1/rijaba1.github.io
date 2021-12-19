@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-16T17:00:22+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Soy un aficionado a la tecnología en general, especialmente a la ciberseguridad.</subtitle><author><name>RiJaba1</name></author><entry><title type="html">Herramienta whichSystem.sh</title><link href="http://localhost:4000/herramienta-whichsystem.sh/" rel="alternate" type="text/html" title="Herramienta whichSystem.sh" /><published>2021-12-16T00:00:00+01:00</published><updated>2021-12-16T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-whichsystem.sh</id><content type="html" xml:base="http://localhost:4000/herramienta-whichsystem.sh/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-19T17:49:57+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Soy un aficionado a la tecnología en general, especialmente a la ciberseguridad.</subtitle><author><name>RiJaba1</name></author><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
+&lt;p&gt;Esta herramienta está diseñada para poder hacer un escaneo rápido y poco ruidoso a una IP que nosotros le asignemos.&lt;/p&gt;
+
+&lt;p&gt;El enlace a GitHub para descargar esta utilidad lo teneis más abajo.&lt;/p&gt;
+
+&lt;h2 id=&quot;instalación&quot;&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;La instalación de esta herramienta es muy sencilla dado que usa herramientas que ya vienen instaladas de manera predeterminada en la mayoría de Linux.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/RiJaba1/portDiscoverSH/
+cd portDiscoverSH
+sudo chmod +x portDiscover.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;uso&quot;&gt;Uso&lt;/h2&gt;
+&lt;p&gt;El uso de esta herramienta es también secillo dado que solo necesitas ejecutarla con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./portDiscover.sh&lt;/code&gt; y ya te guiará en todos los pasos.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/herramienta-portDiscoverSH/img-1.PNG&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;github&quot;&gt;GitHub&lt;/h2&gt;
+&lt;p&gt;Si quiereis usar esta herramienta la teneis displnible en el siguiente enlace: &lt;a href=&quot;https://github.com/RiJaba1/portDiscoverSH&quot; target=&quot;_blank&quot;&gt;https://github.com/RiJaba1/portDiscoverSH&lt;/a&gt;&lt;/p&gt;</content><author><name>RiJaba1</name></author><category term="Herramientas" /><category term="Herramienta" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">Utilidad portDiscover.sh</summary></entry><entry><title type="html">Herramienta whichSystem.sh</title><link href="http://localhost:4000/herramienta-whichsystem.sh/" rel="alternate" type="text/html" title="Herramienta whichSystem.sh" /><published>2021-12-16T00:00:00+01:00</published><updated>2021-12-16T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-whichsystem.sh</id><content type="html" xml:base="http://localhost:4000/herramienta-whichsystem.sh/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
 &lt;p&gt;Esta herramienta nos permita averiguar el SO (Sistema Operativo) de una equipo sin hacer ruido y de manera instantánea.&lt;/p&gt;
 
 &lt;p&gt;Para ello esta herramienta hace uso del comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping&lt;/code&gt; disponible en todas las versiones de Linux de manera predeterminada.&lt;/p&gt;
