@@ -1,6 +1,6 @@
 main:
-  - title: "Home"
-    url: /
+#  - title: "Home"
+#6    url: /
   - title: "Artículos"
     url: /year-archive/
   - title: "Categorías"
@@ -9,7 +9,7 @@ main:
     url: /tags/
   - title: "Buscador"
     url: /buscador/
-  - title: "Sobre mí"
-    url: /about/
-  - title: "FILES"
-    url: /files/
+#  - title: "Sobre mí"
+#    url: /about/
+  - title: "Apps-Online"
+    url: /appsonline/
