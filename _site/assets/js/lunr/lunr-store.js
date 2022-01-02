@@ -16,4 +16,10 @@ var store = [{
         "tags": ["Herramienta","Hacking","RiJaba1"],
         "url": "/herramienta-portDiscoverSH/",
         "teaser": null
+      },{
+        "title": "HackMyVm Brain Writeup",
+        "excerpt":"Brain Writeup En este post os enseñaré a como vulnerar la máquina Brain de la platadorma HackMyVM. La máquina está categorizada como Easy. Reconocimiento Reconocimiento de la IP La máquina ya te da la pista de cual es su IP, pero no obstante os enseñaré a como identificarla: ┌─[root@rijaba1-pc]─[~/Desktop/Brain] └──╼...","categories": ["Writeup"],
+        "tags": ["Writeup","Hacking","HackMyVM"],
+        "url": "/brain-hackmyvm-writeup/",
+        "teaser": null
       }]

