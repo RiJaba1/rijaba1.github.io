@@ -355,7 +355,7 @@ salomon@Brain:~$
 ```
 Bingo! Hemos ganado el acceso a la máquina y tenemos la flag del usuario
 
-## Escalada de Privilegio
+## Escalada de Privilegios
 
 En este punto ya tenemos acceso a la máquina pero aún no somos el usuario con altos privilegios (root), para que sea más fácil la escalada de privilegios vamos a usar [LinPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS). LinPEAS es una herramienta que nos ayuda en esta fase.
 

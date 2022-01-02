@@ -130,7 +130,7 @@ author:
   weibo            :
   xing             :
   youtube          : 
-
+  email            : rijaba1@protonmail.com
 # Reading Files
 include:
   - .htaccess
