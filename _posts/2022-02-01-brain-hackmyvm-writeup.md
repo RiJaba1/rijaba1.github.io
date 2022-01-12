@@ -93,7 +93,7 @@ Este comando de nmap nos permite averiguar las versiones y servicios que están 
 
 ### Fuzzing
 
-Cuando entramos en internet y teclamos http://IP:80/ nos sale lo siguiente:
+Cuando entramos en internet y teclamos http://IP:80/ no sale nada interesante...
 
 
 
