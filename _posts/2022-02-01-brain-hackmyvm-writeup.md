@@ -8,8 +8,6 @@ tags:
   - Writeup
   - Hacking
   - HackMyVM
-categories:
-  - Writeup
 ---
 
 # Brain Writeup

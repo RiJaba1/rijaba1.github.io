@@ -8,8 +8,6 @@ tags:
   - Herramienta
   - Hacking
   - RiJaba1
-categories:
-  - Herramientas
 ---
 ## Utilidad
 Esta herramienta nos permita averiguar el SO (Sistema Operativo) de una equipo sin hacer ruido y de manera instantánea.

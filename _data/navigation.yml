@@ -1,10 +1,10 @@
 main:
 #  - title: "Home"
-#6    url: /
+#    url: /
   - title: "Artículos"
     url: /year-archive/
-  - title: "Categorías"
-    url: /categories/
+#  - title: "Categorías"
+#    url: /categories/
   - title: "Etiquetas"
     url: /tags/
   - title: "Buscador"

@@ -8,8 +8,6 @@ tags:
   - Herramienta
   - Hacking
   - RiJaba1
-categories:
-  - Herramientas
 ---
 ## Utilidad
 Esta herramienta está diseñada para poder hacer un escaneo rápido y poco ruidoso a una IP que nosotros le asignemos.

