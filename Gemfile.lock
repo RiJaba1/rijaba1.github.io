@@ -293,6 +293,7 @@ GEM
     unf_ext (0.0.8-x64-mingw32)
     unicode-display_width (1.8.0)
     verbal_expressions (0.1.5)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -308,6 +309,7 @@ DEPENDENCIES
   jekyll-sitemap
   jemoji
   tzinfo-data
+  wdm
 
 BUNDLED WITH
-   2.2.5
+   2.3.6
