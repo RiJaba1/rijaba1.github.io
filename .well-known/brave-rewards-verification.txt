@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: rijaba1.github.io
+Token: 98bd52dd741979d594d1149da5bed6cc22e0ed778d33441063400d6985f7b3fc
