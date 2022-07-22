@@ -25,6 +25,7 @@ El [curso de preparación para el eJPT](https://my.ine.com/path/a223968e-3a74-45
 El curso dispone de diapositivas, vídeos explicativos de las herramientas y laboratorios prácticos de preparación, con estos recursos deberías estar preparado para certificarte del eJPT sin ningún problema.
 
 En las siguientes listas expondré los _pros y contras_ del curso:
+
 **_Puntos malos:_**
 1. **Muchas** diapositivas con **teoría** que no hacen falta para certificarse.
 2. Explicación de **herramientas obsoletas**.
