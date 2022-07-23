@@ -37,7 +37,7 @@ En las siguientes listas expondré los _pros y contras_ del curso:
 1. **Teoría de refuerzo** que ayuda a reforzar conocimientos.
 2. Módulos de programación.
 3. **Bastantes laboratorios** para practicar herramientas específicas y conceptos generales.
-4. Obviamente que sea _grati_s.
+4. Obviamente que sea **gratis**.
 
 El curso contiene los siguientes módulos:
 - Prerequisites
@@ -74,7 +74,7 @@ Cabe aclarar que en este examen no hay monitorización y puedes consultar, y hac
 
 ## Recomendaciones para el examen
 1. **Anota todo**, todo es todo. Te ayudará a no hacerte un lío, recuerda, esto no es un CTF.
-2. Enumera. Es una parte de los más importante para el examen.
+2. Enumera. Es una de las partes más importante para el examen.
 3. Intenta explotar todo de manera manual. A veces es complicado, pero si tienes la opción acostúmbrate a hacerlo de manera manual, te ayudará para otras certificaciones como el OSCP.
 4. **Tómate descansos**. En varios momentos del examen es posible que te atasques, es ese momento descansa un poco.
 5. **No tengas miedo**. Al principio verás que no es cómo un CTF y no sabrás por dónde empezar, es normal, nos ha pasado a todos, sólo vete poco a poco e irás descubriendo las cosas.
@@ -82,7 +82,7 @@ Cabe aclarar que en este examen no hay monitorización y puedes consultar, y hac
 
 ## Cómo prepararse para el eJPT
 Este es el momento que estabais esperando, os diré mis recomendaciones para el examen.
-1. Haz las **máquinas Blue de HTB y THM** _(se llaman igual)_, estas máquinas te ayudarás a una cosa muy importante para el examen.
+1. Haz las **máquinas Blue de HTB y THM** _(se llaman igual)_, estas máquinas te ayudarán a una cosa muy importante para el examen.
 2. Haz el laboratorio **“Find the secret server”** del curso del INE.
 3. Entiende y aprende a usar estas herramientas
   - Nmap ← Muy importante
@@ -97,4 +97,4 @@ Este es el momento que estabais esperando, os diré mis recomendaciones para el 
    
 ## Despedida
     
-Espero que con estos consejos podais aprobar el eJPT de manera más sencialla y sin mucho esfuerzo.
+Espero que con estos consejos podais aprobar el eJPT de manera más sencilla y sin mucho esfuerzo.
