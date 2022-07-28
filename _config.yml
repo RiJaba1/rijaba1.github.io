@@ -19,7 +19,7 @@ locale                   : "es-ES"
 title                    : "RiJaba1's Page"
 title_separator          : "-"
 name                     : "RiJaba1"
-description              : "eJPT | Cybersecurity Junior | HTB & HMV Player | Red Team Pentester"
+description              : "eJPT | Cybersecurity Junior | HTB & HackMyVM Player | Red Team Pentester"
 url                      : "https://rijaba1.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "rijaba1/rijaba1.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "RiJaba1"
   avatar           : "/avatar.png"
-  bio              : "eJPT | Cybersecurity Junior | HTB & HMVM Player | Red Team Pentester"
+  bio              : "eJPT | Cybersecurity Junior | HTB & HackMyVMPlayer | Red Team Pentester"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
