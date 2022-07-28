@@ -1,7 +1,6 @@
 ---
 layout: single
 title: APPS Online
-excerpt: 
 classes: wide
 tags:
   - Apps
