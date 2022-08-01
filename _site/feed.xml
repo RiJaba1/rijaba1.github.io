@@ -1,4 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-08T20:57:03+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>Cybersecurity Junior | HTB &amp; HMV Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">PwnKit - CVE-2021-4034</title><link href="http://localhost:4000/pwnkit-CVE-2021-4034/" rel="alternate" type="text/html" title="PwnKit - CVE-2021-4034" /><published>2022-01-30T00:00:00+01:00</published><updated>2022-01-30T00:00:00+01:00</updated><id>http://localhost:4000/pwnkit-CVE-2021-4034</id><content type="html" xml:base="http://localhost:4000/pwnkit-CVE-2021-4034/">&lt;h2 id=&quot;de-qué-trata-el-cve-2021-4034&quot;&gt;¿De qué trata el CVE-2021-4034?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-01T18:36:31+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>eJPT | Cybersecurity Junior | HTB &amp; HackMyVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">Mi experiencia con el eJPT + TIPS</title><link href="http://localhost:4000/experiencia-ejpt/" rel="alternate" type="text/html" title="Mi experiencia con el eJPT + TIPS" /><published>2022-07-22T00:00:00+02:00</published><updated>2022-07-22T00:00:00+02:00</updated><id>http://localhost:4000/experiencia-ejpt</id><content type="html" xml:base="http://localhost:4000/experiencia-ejpt/">&lt;p&gt;Hace un par de semanas me certifiqué del ElearnSecurity Junior Penetration Tester (eJPT), en este artículo daré mi experiencia con el curso y con el examen, también comentaré mi conocimiento previo antes del examen y la mejor manera de prepararse para el examen con unos pequeños tips.&lt;/p&gt;
+
+&lt;h2 id=&quot;antecedentes&quot;&gt;Antecedentes&lt;/h2&gt;
+
+&lt;p&gt;Personalmente ya tenía ciertos conocimientos en el sector del hacking, con más de 150 máquinas completadas entre las plataformas de &lt;a href=&quot;https://app.hackthebox.com/users/719273&quot;&gt;HackTheBox&lt;/a&gt; y &lt;a href=&quot;https://hackmyvm.eu/profile/?user=RiJaba1&quot;&gt;HackMyVM&lt;/a&gt;, también disponía de conocimientos de Linux. Esto me permitió poder hacer el examen de una manera tranquila y sin requerir de demasiado esfuerzo.&lt;/p&gt;
+
+&lt;h2 id=&quot;el-curso&quot;&gt;El curso&lt;/h2&gt;
+&lt;p&gt;El &lt;a href=&quot;https://my.ine.com/path/a223968e-3a74-45ed-884d-2d16760b8bbd&quot;&gt;curso de preparación para el eJPT&lt;/a&gt;, impartido por el INE, es 100% gratuito en la parte teórica y práctica. Como cualquier curso tiene sus puntos buenos y sus puntos malos.
+El curso dispone de diapositivas, vídeos explicativos de las herramientas y laboratorios prácticos de preparación, con estos recursos deberías estar preparado para certificarte del eJPT sin ningún problema.&lt;/p&gt;
+
+&lt;p&gt;En las siguientes listas expondré los &lt;em&gt;pros y contras&lt;/em&gt; del curso:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Puntos malos:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Muchas&lt;/strong&gt; diapositivas con &lt;strong&gt;teoría&lt;/strong&gt; que no hacen falta para certificarse.&lt;/li&gt;
+  &lt;li&gt;Explicación de &lt;strong&gt;herramientas obsoletas&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Empleo de &lt;strong&gt;versiones antiguas&lt;/strong&gt; para explicar herramientas.&lt;/li&gt;
+  &lt;li&gt;No te permiten conectarte a los laboratorios mediante VPN &lt;em&gt;(sólo con el Kali del navegador)&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Las &lt;strong&gt;Black-Boxes&lt;/strong&gt; del final del curso &lt;strong&gt;no&lt;/strong&gt; se corresponden con la dificultad del &lt;strong&gt;examen&lt;/strong&gt;, están bien para practicar conocimientos y técnicas alternativas &lt;em&gt;(Metasploit)&lt;/em&gt; pero no se corresponden para nada con el examen &lt;em&gt;(el examen es más fácil)&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Puntos buenos:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Teoría de refuerzo&lt;/strong&gt; que ayuda a reforzar conocimientos.&lt;/li&gt;
+  &lt;li&gt;Módulos de programación.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Bastantes laboratorios&lt;/strong&gt; para practicar herramientas específicas y conceptos generales.&lt;/li&gt;
+  &lt;li&gt;Obviamente que sea &lt;strong&gt;gratis&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;El curso contiene los siguientes módulos:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Prerequisites&lt;/li&gt;
+  &lt;li&gt;Preliminary Skills &amp;amp; Programming&lt;/li&gt;
+  &lt;li&gt;Penetration Testing Basics&lt;/li&gt;
+  &lt;li&gt;eJPT Preparation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;De estos módulos, es muy recomendable &lt;strong&gt;acabar “eJPT Preparation”&lt;/strong&gt;, en este pondrás en práctica los conocimientos adquiridos durante el curso. Los módulos de programación no son necesarios para el examen, pero son recomendables para ir cogiendo soltura en el campo del scripting.&lt;/p&gt;
+
+&lt;h2 id=&quot;el-examen&quot;&gt;El examen&lt;/h2&gt;
+
+&lt;p&gt;El examen tiene un precio de &lt;strong&gt;$200&lt;/strong&gt; (a mi me costó $100 gracias a un descuento), en cambio a otras certificaciones como el eCPPT &lt;strong&gt;no&lt;/strong&gt; hay que entregar ningún &lt;strong&gt;informe&lt;/strong&gt; sobre la intrusión, en este examen sólo hay que contestar &lt;strong&gt;20 preguntas tipo test de&lt;/strong&gt;: respuesta múltiple, cuatro opciones y verdadero o falso. Para pasar el examen de manera exitosa hay que responder como &lt;strong&gt;mínimo 15 preguntas bien&lt;/strong&gt; &lt;em&gt;(o cinco mal para suspender)&lt;/em&gt;.
+&lt;strong&gt;&lt;em&gt;Las preguntas se dividen en los siguientes tipos:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Preguntas sobre la red.&lt;/li&gt;
+  &lt;li&gt;Preguntas web.&lt;/li&gt;
+  &lt;li&gt;Preguntas post-explotación.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Las preguntas para mi gusto más difíciles fueron las de red, posiblemente provocado a la poca experiencia que tenía en comparación a otras preguntas que son tipo más CTF (Capture the Flag).&lt;/p&gt;
+
+&lt;p&gt;Cuándo empiezas el examen, te dan unos recursos para descargar:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Carta de explicación.&lt;/li&gt;
+  &lt;li&gt;Lista de usuarios.&lt;/li&gt;
+  &lt;li&gt;Lista de contraseñas.&lt;/li&gt;
+  &lt;li&gt;Captura del tráfico de red para abrir con WireShark.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Es &lt;strong&gt;&lt;em&gt;MUY&lt;/em&gt;&lt;/strong&gt; importante leerse de manera detallada la carta, no tienes prisa y te ayudará mucho para responder las preguntas. En la captura de red no hay muchísima información importante, pero va a ser importante analizarla para hacer &lt;em&gt;un proceso necesario en el examen&lt;/em&gt;. La lista de usuarios y contraseñas ya sabes para qué sirve.&lt;/p&gt;
+
+&lt;p&gt;En cuanto a mi experiencia en el propio examen tengo varias cosas que comentar, lo detallaré en los siguientes puntos:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Ya sabía que el examen &lt;strong&gt;no era un CTF&lt;/strong&gt;, pero hasta que lo vives no sabes cómo es la experiencia de una auditoría simulada.&lt;/li&gt;
+  &lt;li&gt;Tardé tres horas y media en terminar el examen, lo que es muy poco en comparación con el tiempo que te dan, por eso &lt;strong&gt;no te tienes que dar prisa&lt;/strong&gt; en ningún momento, tómate el examen con calma &lt;em&gt;(así de paso lo intentas disfrutar)&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Este punto es malo, pero tengo que decirlo porque fue una cosa que me disgustó mucho en el examen, el &lt;strong&gt;laboratorio va bastante lento&lt;/strong&gt;, al principio creí que podía ser culpa mía, pero no lo era. Para evitar problemas os recomiendo que no escaneéis todos los puertos TCP (65535), con los 5000 más comunes (con 5000 vais de sobra, pero mejor asegurar), el examen está diseñado para que se hagan &lt;strong&gt;escaneos específicos&lt;/strong&gt;. Otra cosa es evitar el multi-tasking, mejor no hagáis varias cosas a la vez, &lt;strong&gt;centraros en una tarea&lt;/strong&gt;. Con estos consejos evitareis ralentizaros durante el proceso de la certificación.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cabe aclarar que en este examen no hay monitorización y puedes consultar, y hacer, cualquier cosa que quieras.&lt;/p&gt;
+
+&lt;h2 id=&quot;recomendaciones-para-el-examen&quot;&gt;Recomendaciones para el examen&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Anota todo&lt;/strong&gt;, todo es todo. Te ayudará a no hacerte un lío, recuerda, esto no es un CTF.&lt;/li&gt;
+  &lt;li&gt;Enumera. Es una de las partes más importante para el examen.&lt;/li&gt;
+  &lt;li&gt;Intenta explotar todo de manera manual. A veces es complicado, pero si tienes la opción acostúmbrate a hacerlo de manera manual, te ayudará para otras certificaciones como el OSCP.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Tómate descansos&lt;/strong&gt;. En varios momentos del examen es posible que te atasques, es ese momento descansa un poco.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;No tengas miedo&lt;/strong&gt;. Al principio verás que no es cómo un CTF y no sabrás por dónde empezar, es normal, nos ha pasado a todos, sólo vete poco a poco e irás descubriendo las cosas.&lt;/li&gt;
+  &lt;li&gt;Una cosa que me ayudó mucho es leer antes del examen artículos como este.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;cómo-prepararse-para-el-ejpt&quot;&gt;Cómo prepararse para el eJPT&lt;/h2&gt;
+&lt;p&gt;Este es el momento que estabais esperando, os diré mis recomendaciones para el examen.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Haz las &lt;strong&gt;máquinas Blue de HTB y THM&lt;/strong&gt; &lt;em&gt;(se llaman igual)&lt;/em&gt;, estas máquinas te ayudarán a una cosa muy importante para el examen.&lt;/li&gt;
+  &lt;li&gt;Haz el laboratorio &lt;strong&gt;“Find the secret server”&lt;/strong&gt; del curso del INE.&lt;/li&gt;
+  &lt;li&gt;Entiende y aprende a usar estas herramientas
+    &lt;ul&gt;
+      &lt;li&gt;Nmap ← Muy importante&lt;/li&gt;
+      &lt;li&gt;Hydra&lt;/li&gt;
+      &lt;li&gt;Sqlmap&lt;/li&gt;
+      &lt;li&gt;BurpSuite&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Haz varias máquinas con dificultad fácil de las plataformas de &lt;a href=&quot;https://app.hackthebox.com/users/719273&quot;&gt;HackTheBox&lt;/a&gt;, &lt;a href=&quot;https://hackmyvm.eu/profile/?user=RiJaba1&quot;&gt;HackMyVM&lt;/a&gt; y &lt;a href=&quot;https://tryhackme.com/p/RiJaba1&quot;&gt;TryHackMe&lt;/a&gt;. Con esto conseguirás muy buena base para el examen.&lt;/li&gt;
+  &lt;li&gt;Practica con los laboratirios del INE networking.&lt;/li&gt;
+  &lt;li&gt;Cómo ya comenté antes, lee varios artículos sobre la experiencia de otras personas.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;despedida&quot;&gt;Despedida&lt;/h2&gt;
+
+&lt;p&gt;Espero que con estos consejos podais aprobar el eJPT de manera más sencilla y sin mucho esfuerzo.&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="eJPT" /><category term="Certificación" /><category term="Curso" /><category term="Tips" /><category term="Experiencia" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">En este artículo daré mi experiencia con la certificación eJPT y daré unos tips para aprobarlo de manera sencilla.</summary></entry><entry><title type="html">PwnKit - CVE-2021-4034</title><link href="http://localhost:4000/pwnkit-CVE-2021-4034/" rel="alternate" type="text/html" title="PwnKit - CVE-2021-4034" /><published>2022-01-30T00:00:00+01:00</published><updated>2022-01-30T00:00:00+01:00</updated><id>http://localhost:4000/pwnkit-CVE-2021-4034</id><content type="html" xml:base="http://localhost:4000/pwnkit-CVE-2021-4034/">&lt;h2 id=&quot;de-qué-trata-el-cve-2021-4034&quot;&gt;¿De qué trata el CVE-2021-4034?&lt;/h2&gt;
 
 &lt;p&gt;Este CVE corresponde a un PolKit que permite escalar privilegio de manera local aprovechándose del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pkexec&lt;/code&gt; con permisos SUID.&lt;/p&gt;
 

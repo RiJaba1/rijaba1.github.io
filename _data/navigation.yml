@@ -1,8 +1,12 @@
 main:
 #  - title: "Home"
 #    url: /
-  - title: "Artículos"
-    url: /year-archive/
+  - title: "Home"
+    url: /
+
+  - title: "Bandit"
+    url: /bandit/
+
 #  - title: "Categorías"
 #    url: /categories/
   - title: "Etiquetas"
