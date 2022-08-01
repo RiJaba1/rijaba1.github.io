@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Mi experiencia con el eJPT + TIPS
-excerpt: En este artículo daré mi experiencia con la certificación eJPT y daré unos tips para aprobarlo de manera sencilla.
+excerpt: En este artículo comentaré mi experiencia con la certificación eJPT y daré unos tips para aprobarlo de manera sencilla.
 date: 2022-07-22
 classes: wide
 header:

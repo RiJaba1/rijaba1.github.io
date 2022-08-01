@@ -1,7 +1,7 @@
 ---
 layout: single
 title: HackMyVm Brain Writeup
-excerpt: En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM
+excerpt: En este artículo enseño a cómo vulnerar la máquina Brain de HackMyVM.
 date: 2022-01-02
 classes: wide
 tags:
