@@ -1,5 +1,5 @@
 ---
-title: "Writeups de Bandit"
+title: "Bandit"
 layout: bandit
 permalink: /bandit
 author_profile: true
