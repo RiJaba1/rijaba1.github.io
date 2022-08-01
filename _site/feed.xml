@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-01T19:43:05+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>eJPT | Cybersecurity Junior | HTB &amp; HackMyVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">Test</title><link href="http://localhost:4000/test/" rel="alternate" type="text/html" title="Test" /><published>2022-08-01T00:00:00+02:00</published><updated>2022-08-01T00:00:00+02:00</updated><id>http://localhost:4000/test</id><content type="html" xml:base="http://localhost:4000/test/">&lt;p&gt;Test&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="bandit" /><summary type="html">Test 2</summary></entry><entry><title type="html">Mi experiencia con el eJPT + TIPS</title><link href="http://localhost:4000/experiencia-ejpt/" rel="alternate" type="text/html" title="Mi experiencia con el eJPT + TIPS" /><published>2022-07-22T00:00:00+02:00</published><updated>2022-07-22T00:00:00+02:00</updated><id>http://localhost:4000/experiencia-ejpt</id><content type="html" xml:base="http://localhost:4000/experiencia-ejpt/">&lt;p&gt;Hace un par de semanas me certifiqué del ElearnSecurity Junior Penetration Tester (eJPT), en este artículo daré mi experiencia con el curso y con el examen, también comentaré mi conocimiento previo antes del examen y la mejor manera de prepararse para el examen con unos pequeños tips.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-01T22:00:02+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>eJPT | Cybersecurity Junior | HTB &amp; HackMyVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">Bandit 0</title><link href="http://localhost:4000/bandit-1/" rel="alternate" type="text/html" title="Bandit 0" /><published>2022-08-01T00:00:00+02:00</published><updated>2022-08-01T00:00:00+02:00</updated><id>http://localhost:4000/bandit-1</id><content type="html" xml:base="http://localhost:4000/bandit-1/">&lt;p&gt;En este artículo estaremos resolviendo el primer nivel del &lt;a href=&quot;https://en.wikipedia.org/wiki/Wargame_(hacking)&quot;&gt;Wargame&lt;/a&gt; llamado &lt;a href=&quot;https://overthewire.org/wargames/bandit/&quot;&gt;Bandit&lt;/a&gt; de la plataforma &lt;a href=&quot;https://overthewire.org/&quot;&gt;OverTheWire&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conexión-ssh&quot;&gt;Conexión SSH:&lt;/h2&gt;
+&lt;p&gt;Para acceder a este nivel nos conectaremos por SSH usando las credenciales que nos muestra la página web de OverTheWire:&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/bandit0/ConnectSSH.png&quot; /&gt;
+&lt;/p&gt;
+&lt;p&gt;Para conectarnos se puede usar:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh bandit0@bandit.labs.overthewire.org &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2220
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;No obstante, prefiero usar el siguiente comando para especificar toda la conexión en un One-Liner:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sshpass &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bandit0&quot;&lt;/span&gt; ssh bandit0@bandit.labs.overthewire.org &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2220 &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;StrictHostKeyChecking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;no
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Si os da un error el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sshpass&lt;/code&gt; podeis consultar en el siguiente enlace cómo instalarlo: &lt;a href=&quot;https://command-not-found.com/sshpass&quot;&gt;https://command-not-found.com/sshpass&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Usando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sshpass -p&lt;/code&gt; especificamos la contraseña, con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-o StrictHostKeyChecking=no&lt;/code&gt; evitamos el molesto mensaje que siempre sale al conectarse por SSH &lt;em&gt;(en este caso impediría conectarnos con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sshpass&lt;/code&gt;)&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ejemplo del mensaje molesto:&lt;/em&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/bandit0/MSGMolesto.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;lectura-del-archivo&quot;&gt;Lectura del archivo:&lt;/h2&gt;
+&lt;p&gt;Si listamos los archivos que están en la carpeta actual con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; nos daremos cuenta del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readme&lt;/code&gt;, este archivo contiene la contraseña para el siguiente nivel:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ls
+cat &lt;/span&gt;readme
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/bandit0/PWN.png&quot; /&gt;
+&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Bandit" /><category term="OverTheWire" /><category term="Hacking" /><category term="Writeup" /><summary type="html">Resolución del primer nivel del Wargame Bandit.</summary></entry><entry><title type="html">Mi experiencia con el eJPT + TIPS</title><link href="http://localhost:4000/experiencia-ejpt/" rel="alternate" type="text/html" title="Mi experiencia con el eJPT + TIPS" /><published>2022-07-22T00:00:00+02:00</published><updated>2022-07-22T00:00:00+02:00</updated><id>http://localhost:4000/experiencia-ejpt</id><content type="html" xml:base="http://localhost:4000/experiencia-ejpt/">&lt;p&gt;Hace un par de semanas me certifiqué del ElearnSecurity Junior Penetration Tester (eJPT), en este artículo daré mi experiencia con el curso y con el examen, también comentaré mi conocimiento previo antes del examen y la mejor manera de prepararse para el examen con unos pequeños tips.&lt;/p&gt;
 
 &lt;h2 id=&quot;antecedentes&quot;&gt;Antecedentes&lt;/h2&gt;
 

@@ -10,19 +10,19 @@
 	  
 
     <meta charset="utf-8">
-<!-- begin _includes/seo.html --><title>Test - RiJaba1’s Page</title>
-<meta name="description" content="Test 2">
+<!-- begin _includes/seo.html --><title>Bandit 0 - RiJaba1’s Page</title>
+<meta name="description" content="Resolución del primer nivel del Wargame Bandit.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="RiJaba1's Page">
-<meta property="og:title" content="Test">
-<meta property="og:url" content="http://localhost:4000/test/">
+<meta property="og:title" content="Bandit 0">
+<meta property="og:url" content="http://localhost:4000/bandit-1/">
 
 
-  <meta property="og:description" content="Test 2">
+  <meta property="og:description" content="Resolución del primer nivel del Wargame Bandit.">
 
 
 
@@ -41,7 +41,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/test/">
+<link rel="canonical" href="http://localhost:4000/bandit-1/">
 
 
 
@@ -209,7 +209,7 @@
         <span class="sep">/</span>
       
       
-        <li class="current">Test</li>
+        <li class="current">Bandit 0</li>
       
     
   </ol>
@@ -333,15 +333,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Test">
-    <meta itemprop="description" content="Test 2">
+    <meta itemprop="headline" content="Bandit 0">
+    <meta itemprop="description" content="Resolución del primer nivel del Wargame Bandit.">
     <meta itemprop="datePublished" content="August 01, 2022">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Test
+          <h1 id="page-title" class="page__title" itemprop="headline">Bandit 0
 </h1>
           
         </header>
@@ -355,7 +355,38 @@
           
           
         </p>
-        <p>Test</p>
+        <p>En este artículo estaremos resolviendo el primer nivel del <a href="https://en.wikipedia.org/wiki/Wargame_(hacking)">Wargame</a> llamado <a href="https://overthewire.org/wargames/bandit/">Bandit</a> de la plataforma <a href="https://overthewire.org/">OverTheWire</a>.</p>
+
+<h2 id="conexión-ssh">Conexión SSH:</h2>
+<p>Para acceder a este nivel nos conectaremos por SSH usando las credenciales que nos muestra la página web de OverTheWire:</p>
+<p align="center">
+	<img src="/assets/images/bandit0/ConnectSSH.png" />
+</p>
+<p>Para conectarnos se puede usar:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh bandit0@bandit.labs.overthewire.org <span class="nt">-p</span> 2220
+</code></pre></div></div>
+
+<p>No obstante, prefiero usar el siguiente comando para especificar toda la conexión en un One-Liner:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sshpass <span class="nt">-p</span> <span class="s2">"bandit0"</span> ssh bandit0@bandit.labs.overthewire.org <span class="nt">-p</span> 2220 <span class="nt">-o</span> <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
+</code></pre></div></div>
+<p><em>Si os da un error el <code class="language-plaintext highlighter-rouge">sshpass</code> podeis consultar en el siguiente enlace cómo instalarlo: <a href="https://command-not-found.com/sshpass">https://command-not-found.com/sshpass</a></em></p>
+
+<p>Usando <code class="language-plaintext highlighter-rouge">sshpass -p</code> especificamos la contraseña, con <code class="language-plaintext highlighter-rouge">-o StrictHostKeyChecking=no</code> evitamos el molesto mensaje que siempre sale al conectarse por SSH <em>(en este caso impediría conectarnos con la utilidad <code class="language-plaintext highlighter-rouge">sshpass</code>)</em>:</p>
+
+<p><em>Ejemplo del mensaje molesto:</em></p>
+<p align="center">
+	<img src="/assets/images/bandit0/MSGMolesto.png" />
+</p>
+
+<h2 id="lectura-del-archivo">Lectura del archivo:</h2>
+<p>Si listamos los archivos que están en la carpeta actual con <code class="language-plaintext highlighter-rouge">ls</code> nos daremos cuenta del archivo <code class="language-plaintext highlighter-rouge">readme</code>, este archivo contiene la contraseña para el siguiente nivel:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls
+cat </span>readme
+</code></pre></div></div>
+<p align="center">
+	<img src="/assets/images/bandit0/PWN.png" />
+</p>
 
         
       </section>
@@ -363,8 +394,6 @@
       <footer class="page__meta">
         
         
-
-
   
 
 
@@ -373,15 +402,29 @@
   
 
   <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
       
       
-      <a href="/categories/#bandit" class="page__taxonomy-item" rel="tag">bandit</a>
+      <a href="/tags/#bandit" class="page__taxonomy-item" rel="tag">Bandit</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#hacking" class="page__taxonomy-item" rel="tag">Hacking</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#overthewire" class="page__taxonomy-item" rel="tag">OverTheWire</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#writeup" class="page__taxonomy-item" rel="tag">Writeup</a>
     
     </span>
   </p>
+
+
 
 
         
