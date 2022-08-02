@@ -10,38 +10,38 @@
 	  
 
     <meta charset="utf-8">
-<!-- begin _includes/seo.html --><title>Bandit 1 - RiJaba1’s Page</title>
-<meta name="description" content="Resolución del nivel 1 del Wargame Bandit.">
+<!-- begin _includes/seo.html --><title>Bandit 0 - RiJaba1’s Page</title>
+<meta name="description" content="Resolución del primer nivel del Wargame Bandit.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="RiJaba1's Page">
-<meta property="og:title" content="Bandit 1">
-<meta property="og:url" content="http://localhost:4000/bandit-1/">
+<meta property="og:title" content="Bandit 0">
+<meta property="og:url" content="http://localhost:4000/bandit-0/">
 
 
-  <meta property="og:description" content="Resolución del nivel 1 del Wargame Bandit.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2022-08-02T00:00:00+02:00">
+  <meta property="og:description" content="Resolución del primer nivel del Wargame Bandit.">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2022-08-01T00:00:00+02:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/bandit-1/">
+
+<link rel="canonical" href="http://localhost:4000/bandit-0/">
 
 
 
@@ -209,7 +209,7 @@
         <span class="sep">/</span>
       
       
-        <li class="current">Bandit 1</li>
+        <li class="current">Bandit 0</li>
       
     
   </ol>
@@ -333,15 +333,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Bandit 1">
-    <meta itemprop="description" content="Resolución del nivel 1 del Wargame Bandit.">
-    <meta itemprop="datePublished" content="August 02, 2022">
+    <meta itemprop="headline" content="Bandit 0">
+    <meta itemprop="description" content="Resolución del primer nivel del Wargame Bandit.">
+    <meta itemprop="datePublished" content="August 01, 2022">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Bandit 1
+          <h1 id="page-title" class="page__title" itemprop="headline">Bandit 0
 </h1>
           
         </header>
@@ -351,45 +351,42 @@
         
         <p class="page__meta">
           
-            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-08-02T00:00:00+02:00">August 02, 2022 </time>&emsp;
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-08-01T00:00:00+02:00">August 01, 2022 </time>&emsp;
           
           
         </p>
-        <p>En este artículo estaremos resolviendo el nivel 1 del <a href="https://en.wikipedia.org/wiki/Wargame_(hacking)">Wargame</a> llamado <a href="https://overthewire.org/wargames/bandit/">Bandit</a> de la plataforma <a href="https://overthewire.org/">OverTheWire</a>.</p>
+        <p>En este artículo estaremos resolviendo el primer nivel del <a href="https://en.wikipedia.org/wiki/Wargame_(hacking)">Wargame</a> llamado <a href="https://overthewire.org/wargames/bandit/">Bandit</a> de la plataforma <a href="https://overthewire.org/">OverTheWire</a>.</p>
 
 <h2 id="conexión-ssh">Conexión SSH:</h2>
-<p>Para acceder a este nivel nos conectaremos por SSH usando la contraseña que conseguimos en el nivel anterior:
-<code class="language-plaintext highlighter-rouge">Contraseña: boJ9jbbUNNfktd78OOpsqOltutMc3MY1</code></p>
+<p>Para acceder a este nivel nos conectaremos por SSH usando las credenciales que nos muestra la página web de OverTheWire:</p>
+<p align="center">
+	<img src="/assets/images/bandit0/ConnectSSH.png" />
+</p>
+<p>Para conectarnos se puede usar:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh bandit0@bandit.labs.overthewire.org <span class="nt">-p</span> 2220
+</code></pre></div></div>
 
-<p>Igual que en el <a href="/bandit-0">post anterior</a> nos conectaremos por <a href="https://es.wikipedia.org/wiki/Secure_Shell">SSH</a>:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sshpass <span class="nt">-p</span> <span class="s2">"boJ9jbbUNNfktd78OOpsqOltutMc3MY1"</span> ssh bandit1@bandit.labs.overthewire.org <span class="nt">-p</span> 2220 <span class="nt">-o</span> <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
+<p>No obstante, prefiero usar el siguiente comando para especificar toda la conexión en un One-Liner:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sshpass <span class="nt">-p</span> <span class="s2">"bandit0"</span> ssh bandit0@bandit.labs.overthewire.org <span class="nt">-p</span> 2220 <span class="nt">-o</span> <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
 </code></pre></div></div>
 <p><em>Si os da un error el <code class="language-plaintext highlighter-rouge">sshpass</code> podeis consultar en el siguiente enlace cómo instalarlo: <a href="https://command-not-found.com/sshpass">https://command-not-found.com/sshpass</a></em></p>
 
 <p>Usando <code class="language-plaintext highlighter-rouge">sshpass -p</code> especificamos la contraseña, con <code class="language-plaintext highlighter-rouge">-o StrictHostKeyChecking=no</code> evitamos el molesto mensaje que siempre sale al conectarse por SSH <em>(en este caso impediría conectarnos con la utilidad <code class="language-plaintext highlighter-rouge">sshpass</code>)</em>:</p>
 
-<h2 id="lectura-del-archivo">Lectura del archivo:</h2>
-<p>Listando los archivos con <code class="language-plaintext highlighter-rouge">ls</code> descubrimos un archivo con nombre <code class="language-plaintext highlighter-rouge">-</code>, haciendo un <code class="language-plaintext highlighter-rouge">cat -</code> no conseguimos ver nada…</p>
-
+<p><em>Ejemplo del mensaje molesto:</em></p>
 <p align="center">
-	<img src="/assets/images/bandit1/listOpen.png" />
+	<img src="/assets/images/bandit0/MSGMolesto.png" />
 </p>
 
-<p>En Bash cuándo haces referencia a <code class="language-plaintext highlighter-rouge">-</code> te refieres a tu directorio personal de trabajo. Por eso nunca te va a reportar nada este comando.
-Para poder leer ese archivo tendremos que especifiar la ruta absoluta del mismo, hay varias maneras de hacerlo:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /home/bandit1/-
-<span class="nb">cat</span> ~/-
-<span class="nb">cat</span> ./-
-<span class="nb">cat</span> <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>/-
+<h2 id="lectura-del-archivo">Lectura del archivo:</h2>
+<p>Si listamos los archivos que están en la carpeta actual con <code class="language-plaintext highlighter-rouge">ls</code> nos daremos cuenta del archivo <code class="language-plaintext highlighter-rouge">readme</code>, este archivo contiene la contraseña para <a href="/bandit-1">el siguiente nivel</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls
+cat </span>readme
 </code></pre></div></div>
 <p align="center">
-	<img src="/assets/images/bandit1/ejemplorutas.png" />
+	<img src="/assets/images/bandit0/PWN.png" />
 </p>
-
-<h2 id="conclusión">Conclusión:</h2>
-<p>Con esto ya tendríamos la contraseña para conectarnos al siguiente nivel.</p>
-
-<p>De manera adicional os recuerdo que hay muchas maneras de hacar las cosas con Bash, no os comformeis con conseguir la contraseña, probad varias maneras. Usad Bandit para probar las diferentes maneras.</p>
 
         
       </section>
@@ -431,7 +428,7 @@ Para poder leer ese archivo tendremos que especifiar la ruta absoluta del mismo,
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2022-08-02T00:00:00+02:00">August 02, 2022</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Fecha:</strong> <time datetime="2022-08-01T00:00:00+02:00">August 01, 2022</time></p>
         
       </footer>
 
@@ -440,11 +437,12 @@ Para poder leer ese archivo tendremos que especifiar la ruta absoluta del mismo,
       
   <nav class="pagination">
     
-      <a href="/bandit-0/" class="pagination--pager" title="Bandit 0
+      <a href="/experiencia-ejpt/" class="pagination--pager" title="Mi experiencia con el eJPT + TIPS
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/bandit-1/" class="pagination--pager" title="Bandit 1
+">Next</a>
     
   </nav>
 

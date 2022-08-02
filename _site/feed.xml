@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-01T22:00:02+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>eJPT | Cybersecurity Junior | HTB &amp; HackMyVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">Bandit 0</title><link href="http://localhost:4000/bandit-1/" rel="alternate" type="text/html" title="Bandit 0" /><published>2022-08-01T00:00:00+02:00</published><updated>2022-08-01T00:00:00+02:00</updated><id>http://localhost:4000/bandit-1</id><content type="html" xml:base="http://localhost:4000/bandit-1/">&lt;p&gt;En este artículo estaremos resolviendo el primer nivel del &lt;a href=&quot;https://en.wikipedia.org/wiki/Wargame_(hacking)&quot;&gt;Wargame&lt;/a&gt; llamado &lt;a href=&quot;https://overthewire.org/wargames/bandit/&quot;&gt;Bandit&lt;/a&gt; de la plataforma &lt;a href=&quot;https://overthewire.org/&quot;&gt;OverTheWire&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-08-02T23:31:35+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RiJaba1’s Page</title><subtitle>eJPT | Cybersecurity Junior | HTB &amp; HackMyVM Player | Red Team Pentester</subtitle><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><entry><title type="html">Bandit 1</title><link href="http://localhost:4000/bandit-1/" rel="alternate" type="text/html" title="Bandit 1" /><published>2022-08-02T00:00:00+02:00</published><updated>2022-08-02T00:00:00+02:00</updated><id>http://localhost:4000/bandit-1</id><content type="html" xml:base="http://localhost:4000/bandit-1/">&lt;p&gt;En este artículo estaremos resolviendo el nivel 1 del &lt;a href=&quot;https://en.wikipedia.org/wiki/Wargame_(hacking)&quot;&gt;Wargame&lt;/a&gt; llamado &lt;a href=&quot;https://overthewire.org/wargames/bandit/&quot;&gt;Bandit&lt;/a&gt; de la plataforma &lt;a href=&quot;https://overthewire.org/&quot;&gt;OverTheWire&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conexión-ssh&quot;&gt;Conexión SSH:&lt;/h2&gt;
+&lt;p&gt;Para acceder a este nivel nos conectaremos por SSH usando la contraseña que conseguimos en el nivel anterior:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Contraseña: boJ9jbbUNNfktd78OOpsqOltutMc3MY1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Igual que en el &lt;a href=&quot;/bandit-0&quot;&gt;post anterior&lt;/a&gt; nos conectaremos por &lt;a href=&quot;https://es.wikipedia.org/wiki/Secure_Shell&quot;&gt;SSH&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sshpass &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;boJ9jbbUNNfktd78OOpsqOltutMc3MY1&quot;&lt;/span&gt; ssh bandit1@bandit.labs.overthewire.org &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2220 &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;StrictHostKeyChecking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;no
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Si os da un error el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sshpass&lt;/code&gt; podeis consultar en el siguiente enlace cómo instalarlo: &lt;a href=&quot;https://command-not-found.com/sshpass&quot;&gt;https://command-not-found.com/sshpass&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Usando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sshpass -p&lt;/code&gt; especificamos la contraseña, con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-o StrictHostKeyChecking=no&lt;/code&gt; evitamos el molesto mensaje que siempre sale al conectarse por SSH &lt;em&gt;(en este caso impediría conectarnos con la utilidad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sshpass&lt;/code&gt;)&lt;/em&gt;:&lt;/p&gt;
+
+&lt;h2 id=&quot;lectura-del-archivo&quot;&gt;Lectura del archivo:&lt;/h2&gt;
+&lt;p&gt;Listando los archivos con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; descubrimos un archivo con nombre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt;, haciendo un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat -&lt;/code&gt; no conseguimos ver nada…&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/bandit1/listOpen.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;En Bash cuándo haces referencia a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt; te refieres a tu directorio personal de trabajo. Por eso nunca te va a reportar nada este comando.
+Para poder leer ese archivo tendremos que especifiar la ruta absoluta del mismo, hay varias maneras de hacerlo:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /home/bandit1/-
+&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ~/-
+&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ./-
+&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;/-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;/assets/images/bandit1/ejemplorutas.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusión&quot;&gt;Conclusión:&lt;/h2&gt;
+&lt;p&gt;Con esto ya tendríamos la contraseña para conectarnos al siguiente nivel.&lt;/p&gt;
+
+&lt;p&gt;De manera adicional os recuerdo que hay muchas maneras de hacar las cosas con Bash, no os comformeis con conseguir la contraseña, probad varias maneras. Usad Bandit para probar las diferentes maneras.&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Bandit" /><category term="OverTheWire" /><category term="Hacking" /><category term="Writeup" /><summary type="html">Resolución del nivel 1 del Wargame Bandit.</summary></entry><entry><title type="html">Bandit 0</title><link href="http://localhost:4000/bandit-0/" rel="alternate" type="text/html" title="Bandit 0" /><published>2022-08-01T00:00:00+02:00</published><updated>2022-08-01T00:00:00+02:00</updated><id>http://localhost:4000/bandit-0</id><content type="html" xml:base="http://localhost:4000/bandit-0/">&lt;p&gt;En este artículo estaremos resolviendo el primer nivel del &lt;a href=&quot;https://en.wikipedia.org/wiki/Wargame_(hacking)&quot;&gt;Wargame&lt;/a&gt; llamado &lt;a href=&quot;https://overthewire.org/wargames/bandit/&quot;&gt;Bandit&lt;/a&gt; de la plataforma &lt;a href=&quot;https://overthewire.org/&quot;&gt;OverTheWire&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;conexión-ssh&quot;&gt;Conexión SSH:&lt;/h2&gt;
 &lt;p&gt;Para acceder a este nivel nos conectaremos por SSH usando las credenciales que nos muestra la página web de OverTheWire:&lt;/p&gt;
@@ -22,7 +56,7 @@
 &lt;/p&gt;
 
 &lt;h2 id=&quot;lectura-del-archivo&quot;&gt;Lectura del archivo:&lt;/h2&gt;
-&lt;p&gt;Si listamos los archivos que están en la carpeta actual con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; nos daremos cuenta del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readme&lt;/code&gt;, este archivo contiene la contraseña para el siguiente nivel:&lt;/p&gt;
+&lt;p&gt;Si listamos los archivos que están en la carpeta actual con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; nos daremos cuenta del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readme&lt;/code&gt;, este archivo contiene la contraseña para &lt;a href=&quot;/bandit-1&quot;&gt;el siguiente nivel&lt;/a&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ls
 cat &lt;/span&gt;readme
@@ -129,7 +163,7 @@ El curso dispone de diapositivas, vídeos explicativos de las herramientas y lab
 
 &lt;h2 id=&quot;despedida&quot;&gt;Despedida&lt;/h2&gt;
 
-&lt;p&gt;Espero que con estos consejos podais aprobar el eJPT de manera más sencilla y sin mucho esfuerzo.&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="eJPT" /><category term="Certificación" /><category term="Curso" /><category term="Tips" /><category term="Experiencia" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">En este artículo daré mi experiencia con la certificación eJPT y daré unos tips para aprobarlo de manera sencilla.</summary></entry><entry><title type="html">PwnKit - CVE-2021-4034</title><link href="http://localhost:4000/pwnkit-CVE-2021-4034/" rel="alternate" type="text/html" title="PwnKit - CVE-2021-4034" /><published>2022-01-30T00:00:00+01:00</published><updated>2022-01-30T00:00:00+01:00</updated><id>http://localhost:4000/pwnkit-CVE-2021-4034</id><content type="html" xml:base="http://localhost:4000/pwnkit-CVE-2021-4034/">&lt;h2 id=&quot;de-qué-trata-el-cve-2021-4034&quot;&gt;¿De qué trata el CVE-2021-4034?&lt;/h2&gt;
+&lt;p&gt;Espero que con estos consejos podais aprobar el eJPT de manera más sencilla y sin mucho esfuerzo.&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="eJPT" /><category term="Certificación" /><category term="Curso" /><category term="Tips" /><category term="Experiencia" /><category term="Hacking" /><category term="RiJaba1" /><summary type="html">En este artículo comentaré mi experiencia con la certificación eJPT y daré unos tips para aprobarlo de manera sencilla.</summary></entry><entry><title type="html">PwnKit - CVE-2021-4034</title><link href="http://localhost:4000/pwnkit-CVE-2021-4034/" rel="alternate" type="text/html" title="PwnKit - CVE-2021-4034" /><published>2022-01-30T00:00:00+01:00</published><updated>2022-01-30T00:00:00+01:00</updated><id>http://localhost:4000/pwnkit-CVE-2021-4034</id><content type="html" xml:base="http://localhost:4000/pwnkit-CVE-2021-4034/">&lt;h2 id=&quot;de-qué-trata-el-cve-2021-4034&quot;&gt;¿De qué trata el CVE-2021-4034?&lt;/h2&gt;
 
 &lt;p&gt;Este CVE corresponde a un PolKit que permite escalar privilegio de manera local aprovechándose del archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pkexec&lt;/code&gt; con permisos SUID.&lt;/p&gt;
 
@@ -683,7 +717,7 @@ root@Brain:~# &lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;root.txt&lt;span
 root@Brain:~# 
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;¡Ya somos root, eso inplica que ya tenemos su flag!&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Writeup" /><category term="Hacking" /><category term="HackMyVM" /><summary type="html">En este artículo os enseño a como vulnerar la máquina Brain de HackMyVM</summary></entry><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
+&lt;p&gt;¡Ya somos root, eso inplica que ya tenemos su flag!&lt;/p&gt;</content><author><name>RiJaba1</name><email>rijaba1@protonmail.com</email></author><category term="Writeup" /><category term="Hacking" /><category term="HackMyVM" /><summary type="html">En este artículo enseño a cómo vulnerar la máquina Brain de HackMyVM.</summary></entry><entry><title type="html">Herramienta portDiscoverSH</title><link href="http://localhost:4000/herramienta-portDiscoverSH/" rel="alternate" type="text/html" title="Herramienta portDiscoverSH" /><published>2021-12-19T00:00:00+01:00</published><updated>2021-12-19T00:00:00+01:00</updated><id>http://localhost:4000/herramienta-portDiscoverSH</id><content type="html" xml:base="http://localhost:4000/herramienta-portDiscoverSH/">&lt;h2 id=&quot;utilidad&quot;&gt;Utilidad&lt;/h2&gt;
 &lt;p&gt;Esta herramienta está diseñada para poder hacer un escaneo rápido y poco ruidoso a una IP que nosotros le asignemos.&lt;/p&gt;
 
 &lt;p&gt;El enlace a GitHub para descargar esta utilidad lo teneis más abajo.&lt;/p&gt;
