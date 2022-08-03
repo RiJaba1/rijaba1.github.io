@@ -5,15 +5,15 @@ main:
     url: /
 
   - title: "Bandit"
-    url: /bandit/
+    url: /bandit
 
 #  - title: "Categorías"
 #    url: /categories/
   - title: "Etiquetas"
-    url: /tags/
+    url: /tags
   - title: "Buscador"
-    url: /buscador/
+    url: /buscador
 #  - title: "Sobre mí"
 #    url: /about/
   - title: "Apps-Online"
-    url: /appsonline/
+    url: /appsonline
