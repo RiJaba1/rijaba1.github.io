@@ -13,6 +13,11 @@
   </head>
 
   <body>
+    <script>
+      document.querySelector('.internal-link').addEventListener('click', function() {
+        window.open(this.getAttribute('data-link'), '_blank');
+      });
+    </script>
     <!-- Parallax Pixel Background Animation -->
     <section class="animated-background">
       <div id="stars1"></div>
