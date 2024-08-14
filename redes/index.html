@@ -13,11 +13,7 @@
   </head>
 
   <body>
-    <script>
-      document.querySelector('.internal-link').addEventListener('click', function() {
-        window.open(this.getAttribute('data-link'), '_blank');
-      });
-    </script>
+
     <!-- Parallax Pixel Background Animation -->
     <section class="animated-background">
       <div id="stars1"></div>
@@ -90,6 +86,10 @@
     <div id="hashtag">
       Gracias a <a href="https://github.com/johnggli">"johnggli"</a> por aportar esta <a href="https://github.com/johnggli/linktree">plantilla.</a>
     </div>
-
+    <script>
+      document.querySelector('.internal-link').addEventListener('click', function() {
+      window.open(this.getAttribute('data-link'), '_blank');
+    });
+    </script>
   </body>
 </html>
